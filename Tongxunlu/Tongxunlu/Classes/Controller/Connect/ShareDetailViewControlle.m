@@ -81,7 +81,7 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    NSString *keyword = @"";
+    NSString *keyword = searchBar.text;
     NSNumber *userId = [DictStoreSupport readRtConfigWithKey:@"userId"];
     if (userId==0) {
         userId = [NSNumber numberWithInt:7];
@@ -91,7 +91,7 @@
         compCode = @"ALIBABA";
     }
     //    if (![keyword isEqualToString:@""]) {
-    [[EZRequest instance]postDataWithPath:@"/txlshare-manage/mobile/shareBookUser/mobileSearch.txl" params:@{@"outUserId":@"7",@"compCode":compCode,@"filter.sbName":keyword,@"filter.sbId":[NSString stringWithFormat:@"%d",self.sbId]} success:^(NSDictionary *result) {
+    [[EZRequest instance]postDataWithPath:@"/txlshare-manage/mobile/shareBookUser/mobileSearch.txl" params:@{@"outUserId":userId,@"compCode":compCode,@"filter.sbName":keyword,@"filter.sbId":[NSString stringWithFormat:@"%d",self.sbId]} success:^(NSDictionary *result) {
         _datas = [result objectForKey:@"shareBookUsers"];
         [self.tableView reloadData];
     } failure:^(NSError *error) {

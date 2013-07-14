@@ -31,7 +31,6 @@
     [super viewDidLoad];
     
     [self setTitle:self.nameTitle];
-    // Do any additional setup after loading the view from its nib.
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;

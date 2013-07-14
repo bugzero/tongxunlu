@@ -38,7 +38,6 @@
     
     self.searchBar.delegate = self;
 
-    
     //先读缓存
     _datas = [DictStoreSupport readPoConfigWithKey:SHARE_DETAIL_CACHE_DATAS];
     if (!_datas) {

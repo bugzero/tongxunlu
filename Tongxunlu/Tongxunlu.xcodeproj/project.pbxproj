@@ -91,6 +91,8 @@
 		83B1681C1792967200174DF3 /* btn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B1681A1792967200174DF3 /* btn_bg.png */; };
 		83B1681F1792971200174DF3 /* btn_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B1681D1792971200174DF3 /* btn_selected.png */; };
 		83B168201792971200174DF3 /* btn_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B1681E1792971200174DF3 /* btn_selected@2x.png */; };
+		83F02A111792B38A00099F92 /* ListEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F02A101792B38A00099F92 /* ListEntity.m */; };
+		83F02A141792B54900099F92 /* DepartsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F02A131792B54900099F92 /* DepartsEntity.m */; };
 		D00296AD178913FE00605EA7 /* ContractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D00296A8178913FE00605EA7 /* ContractViewController.m */; };
 		D00296AE178913FE00605EA7 /* pinyin.c in Sources */ = {isa = PBXBuildFile; fileRef = D00296A9178913FE00605EA7 /* pinyin.c */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D00296AF178913FE00605EA7 /* POAPinyin.m in Sources */ = {isa = PBXBuildFile; fileRef = D00296AC178913FE00605EA7 /* POAPinyin.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -270,6 +272,10 @@
 		83B1681A1792967200174DF3 /* btn_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_bg.png; sourceTree = "<group>"; };
 		83B1681D1792971200174DF3 /* btn_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_selected.png; sourceTree = "<group>"; };
 		83B1681E1792971200174DF3 /* btn_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_selected@2x.png"; sourceTree = "<group>"; };
+		83F02A0F1792B38A00099F92 /* ListEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListEntity.h; sourceTree = "<group>"; };
+		83F02A101792B38A00099F92 /* ListEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListEntity.m; sourceTree = "<group>"; };
+		83F02A121792B54900099F92 /* DepartsEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DepartsEntity.h; sourceTree = "<group>"; };
+		83F02A131792B54900099F92 /* DepartsEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DepartsEntity.m; sourceTree = "<group>"; };
 		D00296A7178913FE00605EA7 /* ContractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContractViewController.h; sourceTree = "<group>"; };
 		D00296A8178913FE00605EA7 /* ContractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContractViewController.m; sourceTree = "<group>"; };
 		D00296A9178913FE00605EA7 /* pinyin.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pinyin.c; sourceTree = "<group>"; };
@@ -585,6 +591,10 @@
 				83AE0B5B1768363700031A79 /* TXLEntity.m */,
 				830E15A4178907AF008315B9 /* CallRecordEntity.h */,
 				830E15A5178907AF008315B9 /* CallRecordEntity.m */,
+				83F02A0F1792B38A00099F92 /* ListEntity.h */,
+				83F02A101792B38A00099F92 /* ListEntity.m */,
+				83F02A121792B54900099F92 /* DepartsEntity.h */,
+				83F02A131792B54900099F92 /* DepartsEntity.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1019,6 +1029,8 @@
 				D0A71A2F179286B7003B4B2C /* ShareCell.m in Sources */,
 				D0A71A331792982C003B4B2C /* ShareDetailViewControlle.m in Sources */,
 				83B16815179289F800174DF3 /* PersonViewController.m in Sources */,
+				83F02A111792B38A00099F92 /* ListEntity.m in Sources */,
+				83F02A141792B54900099F92 /* DepartsEntity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

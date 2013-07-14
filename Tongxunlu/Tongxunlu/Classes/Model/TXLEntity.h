@@ -11,5 +11,8 @@
 @interface TXLEntity : EZEntity
 
 @property(nonatomic,assign)NSInteger status;
+@property(nonatomic,strong)EZEntity* entityData;
+
+-(id)initWithDictionary:(NSDictionary *)dict entityClass:(Class)class forKey:(NSString*)key;
 
 @end

@@ -50,6 +50,11 @@
 }
 
 + (Class)__classWithKey:(NSString *)key {
+    
+    if ([key hasSuffix:@"Entity"]) {
+        return NSClassFromString(key);
+    }
+    
     NSString *transedKey = [NSString stringWithFormat:@"%@%@", [[key substringToIndex:1] uppercaseString], [key substringFromIndex:1]];
     
     return NSClassFromString([NSString stringWithFormat:@"%@Entity", transedKey]);
@@ -101,7 +106,8 @@
             
             if (type) {
                 //如果也是一个类，那么就用这个类初始化它
-                [self setValue:[[type alloc] initWithDictionary:val isParserArray:isParserArray] forKey:key];
+                id vvv = [[type alloc] initWithDictionary:val isParserArray:isParserArray];
+                [self setValue:vvv forKey:key];
             } else {
                 [self setValue:val forKey:key];
             }

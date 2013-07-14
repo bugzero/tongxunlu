@@ -9,6 +9,8 @@
 #import "User.h"
 #import "TXLSetting.h"
 #import "AccountEntity.h"
+#import "TXLEntity.h"
+
 #import "LoginViewController.h"
 #import "TXLKeyChainHelper.h"
 #import <objc/message.h>
@@ -111,7 +113,9 @@
         return;
     }
     [[EZRequest instance]postDataWithPath:@"/txlmain-manage/mobile/user/mobileLogin.txl" params:@{@"user.account": name,@"user.password":pwd} success:^(NSDictionary *result) {
-        AccountEntity* account = [[AccountEntity alloc]initWithDictionary:result isParserArray:YES];
+//        AccountEntity* account = [[AccountEntity alloc]initWithDictionary:[result objectForKey:@"account"] isParserArray:YES];
+        TXLEntity* rec = [[TXLEntity alloc]initWithDictionary:result entityClass:[AccountEntity class] forKey:@"account"];
+        AccountEntity* account = (AccountEntity*)rec.entityData;
         
         _bLogin = NO;
         
@@ -124,7 +128,7 @@
 //        7：产品管理员不能用手机登陆 !
 //        8：公司管理员不能用手机登陆 !
 //        9：您所在的公司已经过期，无法登陆 !
-        switch (account.status) {
+        switch (rec.status) {
             case 1:{
                 _bLogin = YES;
                 

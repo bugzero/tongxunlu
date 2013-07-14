@@ -6,15 +6,15 @@
 //  Copyright (c) 2013年 ELVIS zhou. All rights reserved.
 //
 
-#import "TXLEntity.h"
+#import "EZEntity.h"
 
-@interface AccountEntity : TXLEntity
+@interface AccountEntity : EZEntity
 
-@property(nonatomic,retain)NSString* compCode;
+@property(nonatomic,strong)NSString* compCode;
 @property(nonatomic,assign)NSInteger compId;
-@property(nonatomic,retain)NSString* name;
-@property(nonatomic,retain)NSString* phone;
+@property(nonatomic,strong)NSString* name;
+@property(nonatomic,strong)NSString* phone;
 @property(nonatomic,assign)NSInteger userId;
-@property(nonatomic,retain)NSString* userName;
+@property(nonatomic,strong)NSString* userName;
 
 @end

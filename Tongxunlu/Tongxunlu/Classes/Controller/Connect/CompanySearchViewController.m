@@ -114,12 +114,12 @@
     [[EZRequest instance]postDataWithPath:@"/txlmain-manage/mobile/department/mobileSearch.txl" params:@{} success:^(NSDictionary *result) {
         
         //// for test
-        ListEntity* list = [[ListEntity alloc]initWithDictionary:result listClass:[DepartsEntity class] lisKey:@"departs"];
+//        ListEntity* list = [[ListEntity alloc]initWithDictionary:result listClass:[DepartsEntity class] lisKey:@"departs"];
         
 //        DBG(@"%@",list);
-        for (id val in list.list) {
-            DBG(@"%@",val);
-        }
+//        for (id val in list.list) {
+//            DBG(@"%@",val);
+//        }
 //        DBG(@"%@",list.list);
         
         /// test end

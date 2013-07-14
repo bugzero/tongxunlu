@@ -31,6 +31,14 @@
     [super viewDidLoad];
     
     [self setTitle:self.nameTitle];
+//    _navigationBar.hidden = YES;
+    
+    self.searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, NAVBAR_HEIGHT, self.view.width, 44)];
+    [self.view addSubview:_searchBar];
+    
+    self.tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, _searchBar.bottom, self.view.width, CONTENT_HEIGHT-_searchBar.height)];
+    
+    [self.view addSubview:_tableView];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -82,6 +90,9 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     NSString *keyword = searchBar.text;
+    if (isEmptyStr(keyword)) {
+        keyword = @"";
+    }
     NSNumber *userId = [DictStoreSupport readRtConfigWithKey:@"userId"];
     if (userId==0) {
         userId = [NSNumber numberWithInt:7];

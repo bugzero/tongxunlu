@@ -118,7 +118,6 @@
 		D0A71A2C179284F2003B4B2C /* ShareSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0A71A2A179284F1003B4B2C /* ShareSearchViewController.xib */; };
 		D0A71A2F179286B7003B4B2C /* ShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A71A2E179286B6003B4B2C /* ShareCell.m */; };
 		D0A71A331792982C003B4B2C /* ShareDetailViewControlle.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A71A3117929829003B4B2C /* ShareDetailViewControlle.m */; };
-		D0A71A341792982C003B4B2C /* ShareDetailViewControlle.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0A71A321792982A003B4B2C /* ShareDetailViewControlle.xib */; };
 		D0F27FE8178EBF2A0093C32C /* CompanySearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F27FE6178EBF2A0093C32C /* CompanySearchViewController.m */; };
 		D0F27FE9178EBF2A0093C32C /* CompanySearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F27FE7178EBF2A0093C32C /* CompanySearchViewController.xib */; };
 		D0F27FEB178EF7DB0093C32C /* icon_card_nor.png in Resources */ = {isa = PBXBuildFile; fileRef = D0F27FEA178EF7DB0093C32C /* icon_card_nor.png */; };
@@ -316,7 +315,6 @@
 		D0A71A2E179286B6003B4B2C /* ShareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareCell.m; sourceTree = "<group>"; };
 		D0A71A3017929828003B4B2C /* ShareDetailViewControlle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareDetailViewControlle.h; sourceTree = "<group>"; };
 		D0A71A3117929829003B4B2C /* ShareDetailViewControlle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareDetailViewControlle.m; sourceTree = "<group>"; };
-		D0A71A321792982A003B4B2C /* ShareDetailViewControlle.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareDetailViewControlle.xib; sourceTree = "<group>"; };
 		D0F27FE5178EBF2A0093C32C /* CompanySearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanySearchViewController.h; sourceTree = "<group>"; };
 		D0F27FE6178EBF2A0093C32C /* CompanySearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanySearchViewController.m; sourceTree = "<group>"; };
 		D0F27FE7178EBF2A0093C32C /* CompanySearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompanySearchViewController.xib; sourceTree = "<group>"; };
@@ -778,7 +776,6 @@
 			children = (
 				D0A71A3017929828003B4B2C /* ShareDetailViewControlle.h */,
 				D0A71A3117929829003B4B2C /* ShareDetailViewControlle.m */,
-				D0A71A321792982A003B4B2C /* ShareDetailViewControlle.xib */,
 				D0F27FEC178EFD4E0093C32C /* SearchCell.h */,
 				D0F27FED178EFD4E0093C32C /* SearchCell.m */,
 				D00296A6178913FE00605EA7 /* support */,
@@ -946,7 +943,6 @@
 				D0537C72178FF2B5004B1467 /* CompanyDetailViewController.xib in Resources */,
 				D003E87B1791650200A78CCF /* DeptChoiceViewController.xib in Resources */,
 				D0A71A2C179284F2003B4B2C /* ShareSearchViewController.xib in Resources */,
-				D0A71A341792982C003B4B2C /* ShareDetailViewControlle.xib in Resources */,
 				83B1681B1792967200174DF3 /* btn_bg@2x.png in Resources */,
 				83B1681C1792967200174DF3 /* btn_bg.png in Resources */,
 				83B1681F1792971200174DF3 /* btn_selected.png in Resources */,

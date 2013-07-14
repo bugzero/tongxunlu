@@ -10,9 +10,9 @@
 
 @interface ShareDetailViewControlle : EZRootViewController<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
-@property (strong, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) UISearchBar *searchBar;
 
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
+@property (strong, nonatomic) UITableView *tableView;
 
 @property (assign, nonatomic) int   sbId;
 

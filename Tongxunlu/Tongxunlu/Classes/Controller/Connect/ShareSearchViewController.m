@@ -109,7 +109,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [self.searchBar resignFirstResponder];
-    ShareDetailViewControlle *detailVc = [[ShareDetailViewControlle alloc] initWithNibName:@"ShareDetailViewControlle" bundle:nil];
+    ShareDetailViewControlle *detailVc = [[ShareDetailViewControlle alloc] init];///WithNibName:@"ShareDetailViewControlle" bundle:nil];
     NSDictionary   *dict = [_datas objectAtIndex:indexPath.row];
     detailVc.sbId = [[dict objectForKey:@"sbId"] intValue];
     detailVc.nameTitle = [NSString stringWithFormat:@"%@(%d)",[dict objectForKey:@"sbName"],[[dict objectForKey:@"userCount"] intValue]];

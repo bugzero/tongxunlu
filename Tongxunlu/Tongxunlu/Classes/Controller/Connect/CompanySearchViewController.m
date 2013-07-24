@@ -199,6 +199,8 @@
         else {
             [self showNotice:@"iOS版本过低,iOS4.0以上才支持程序内发送短信" duration:2.0];
         }
+    }else if(index==1){
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",menu.mobilePhone]]];
     }
 }
 

@@ -115,6 +115,7 @@
 		D0831B82179F6ECD0011963C /* FAFancyMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0831B80179F6ECD0011963C /* FAFancyMenuView.m */; };
 		D0831B85179F6F210011963C /* sms@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0831B83179F6F210011963C /* sms@2x.png */; };
 		D0831B86179F6F210011963C /* phone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0831B84179F6F210011963C /* phone@2x.png */; };
+		D0831B88179FEAE70011963C /* icon_card_nor1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0831B87179FEAE70011963C /* icon_card_nor1@2x.png */; };
 		D0A676321776B48C00DECCBB /* TXLKeyChainHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A676311776B48C00DECCBB /* TXLKeyChainHelper.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D0A676351776B53900DECCBB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A676331776B52600DECCBB /* Security.framework */; };
 		D0A71A2717928264003B4B2C /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0A71A2517928256003B4B2C /* EventKit.framework */; };
@@ -314,6 +315,7 @@
 		D0831B80179F6ECD0011963C /* FAFancyMenuView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAFancyMenuView.m; sourceTree = "<group>"; };
 		D0831B83179F6F210011963C /* sms@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sms@2x.png"; sourceTree = "<group>"; };
 		D0831B84179F6F210011963C /* phone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "phone@2x.png"; sourceTree = "<group>"; };
+		D0831B87179FEAE70011963C /* icon_card_nor1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_card_nor1@2x.png"; sourceTree = "<group>"; };
 		D0A676301776B48C00DECCBB /* TXLKeyChainHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXLKeyChainHelper.h; sourceTree = "<group>"; };
 		D0A676311776B48C00DECCBB /* TXLKeyChainHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXLKeyChainHelper.m; sourceTree = "<group>"; };
 		D0A676331776B52600DECCBB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -466,6 +468,7 @@
 		837DC6FA176767E900C7B0BE /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				D0831B87179FEAE70011963C /* icon_card_nor1@2x.png */,
 				D0831B83179F6F210011963C /* sms@2x.png */,
 				D0831B84179F6F210011963C /* phone@2x.png */,
 				83B1681D1792971200174DF3 /* btn_selected.png */,
@@ -973,6 +976,7 @@
 				83B168201792971200174DF3 /* btn_selected@2x.png in Resources */,
 				D0831B85179F6F210011963C /* sms@2x.png in Resources */,
 				D0831B86179F6F210011963C /* phone@2x.png in Resources */,
+				D0831B88179FEAE70011963C /* icon_card_nor1@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

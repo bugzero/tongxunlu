@@ -118,6 +118,24 @@
     self.view.frame = CONTENT_VIEW_FRAME;
     self.view.top = 0;
     
+    UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 20, 320, 44)];
+//    _searchBar.delegate = self;
+    searchBar.placeholder = @"输入字母、汉字或电话号码搜索";
+    
+    _searchdispalyCtrl = [[UISearchDisplayController  alloc] initWithSearchBar:searchBar contentsController:self];
+    
+    _searchdispalyCtrl.active = NO;
+    
+    _searchdispalyCtrl.delegate = self;
+    
+    _searchdispalyCtrl.searchResultsDelegate=self;
+    
+    _searchdispalyCtrl.searchResultsDataSource = self;
+    
+    [self.view addSubview:_searchdispalyCtrl.searchBar];
+//     [self setMySearchDisplayController:searchdispalyCtrl];
+    
+    
     self.title = @"联系人";
     self.tableView.dataSource = self;
     self.tableView.delegate = self;

@@ -8,13 +8,15 @@
 
 @end
 
-@interface ContractViewController : UITableViewController<UITableViewDelegate,UITableViewDataSource,UISearchDisplayDelegate,ABPersonViewControllerDelegate>
+@interface ContractViewController : UITableViewController<UITableViewDelegate,UISearchDisplayDelegate,UITableViewDataSource,ABPersonViewControllerDelegate>
 {
     NSMutableDictionary *sectionDic;
     NSMutableDictionary *phoneDic;
     NSMutableDictionary *contactDic;
     NSMutableArray *filteredArray;
     id             _delegate;
+//    UISearchBar    *_searchBar;
+    UISearchDisplayController * _searchdispalyCtrl;
     //NSMutableArray *contactNames;
 }
 //@property(nonatomic,strong)EZNavigationController  *parentNavCtl;

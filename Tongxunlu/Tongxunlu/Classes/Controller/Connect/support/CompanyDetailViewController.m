@@ -142,7 +142,7 @@
 
     self.compTelLabel.text = [dict objectForKey:@"compTel"];
 
-    self.deptNameLabel.text = [dict objectForKey:@"deptName"];
+    self.deptNameLabel.text = [dict objectForKey:@"deptId"];
 
     self.emailLable.text = [dict objectForKey:@"email"];
 

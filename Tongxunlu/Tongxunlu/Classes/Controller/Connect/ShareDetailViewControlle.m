@@ -59,7 +59,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //    SearchCell *cell = (SearchCell*)[self tableView:tableView cellForRowAtIndexPath:indexPath];
-    return 44;
+    return 53;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -80,8 +80,80 @@
         cell = [[SearchCell alloc]init];
     }
     [cell setData:[_datas objectAtIndex:indexPath.row]];
+    FAFancyMenuView *menu = [[FAFancyMenuView alloc] init];
+    menu.delegate = self;
+    menu.buttonImages = @[[UIImage imageNamed:@"sms"],[UIImage imageNamed:@"phone"]];
+    menu.mobilePhone = cell.userPhoneLabel.text;
+    UIView  *menuView = [[UIView alloc]initWithFrame:CGRectMake(100, 0, 220, 54)];
+    [menuView addSubview:menu];
+    [cell.contentView addSubview:menuView];
     return cell;
 }
+
+- (void)fancyMenu:(FAFancyMenuView *)menu didSelectedButtonAtIndex:(NSUInteger)index{
+    if (index==0) {
+        Class messageClass = (NSClassFromString(@"MFMessageComposeViewController"));
+        if (messageClass != nil) {
+            // Check whether the current device is configured for sending SMS messages
+            if ([messageClass canSendText]) {
+                [self displaySMSComposerSheet:menu.mobilePhone];
+            }
+            else {
+                [self showNotice:@"设备没有短信功能" duration:2.0];
+                
+            }
+        }
+        else {
+            [self showNotice:@"iOS版本过低,iOS4.0以上才支持程序内发送短信" duration:2.0];
+        }
+    }else if(index==1){
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",menu.mobilePhone]]];
+    }
+}
+
+-(void)displaySMSComposerSheet:(NSString*)mobilePhone
+{
+    
+    MFMessageComposeViewController *picker = [[MFMessageComposeViewController alloc] init];
+    picker.messageComposeDelegate = self;
+    
+    picker.recipients = [NSArray arrayWithObjects:mobilePhone, nil];
+    
+    [self presentViewController:picker animated:YES completion:^{
+        
+    }];
+    
+    //    MFMessageComposeViewController *picker = [[MFMessageComposeViewController alloc] init];
+    //    picker.messageComposeDelegate = self;
+    //
+    //    [self presentModalViewController:picker animated:YES];
+}
+
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller
+                 didFinishWithResult:(MessageComposeResult)result {
+    
+    switch (result)
+    {
+        case MessageComposeResultCancelled:
+            // LOG_EXPR(@"Result: SMS sending canceled");
+            [self showNotice:@"短信发送取消" duration:2.0];
+            break;
+        case MessageComposeResultSent:
+            // LOG_EXPR(@"Result: SMS sent");
+            [self showNotice:@"短信已发送成功" duration:2.0];
+            break;
+        case MessageComposeResultFailed:
+            //[UIAlertView quickAlertWithTitle:@"短信发送失败" messageTitle:nil dismissTitle:@"关闭"];
+            [self showNotice:@"短信发送失败" duration:2.0];
+            break;
+        default:
+            // LOG_EXPR(@"Result: SMS not sent");
+            [self showNotice:@"SMS not sent" duration:2.0];
+            break;
+    }
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     [searchBar resignFirstResponder];

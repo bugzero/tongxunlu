@@ -7,8 +7,10 @@
 //
 
 #import "EZRootViewController.h"
+#import "FAFancyMenuView.h"
+#import <MessageUI/MFMessageComposeViewController.h>
 
-@interface ShareDetailViewControlle : EZRootViewController<UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface ShareDetailViewControlle : EZRootViewController<FAFancyMenuViewDelegate,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
 
 @property (strong, nonatomic) UISearchBar *searchBar;
 

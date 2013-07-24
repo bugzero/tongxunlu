@@ -285,10 +285,10 @@
         cell = [[SearchCell alloc]init];
     }
     [cell setData:[_datas objectAtIndex:indexPath.row]];
-    NSArray *images = @[[UIImage imageNamed:@"sms"],[UIImage imageNamed:@"phone"]];
+//    NSArray *images = @[[UIImage imageNamed:@"sms"],[UIImage imageNamed:@"phone"]];
     FAFancyMenuView *menu = [[FAFancyMenuView alloc] init];
     menu.delegate = self;
-    menu.buttonImages = images;
+    menu.buttonImages = @[[UIImage imageNamed:@"sms"],[UIImage imageNamed:@"phone"]];
     menu.mobilePhone = cell.userPhoneLabel.text;
     UIView  *menuView = [[UIView alloc]initWithFrame:CGRectMake(100, 0, 220, 54)];
     [menuView addSubview:menu];

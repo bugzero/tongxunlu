@@ -11,6 +11,7 @@
 #import "ShareDetailViewControlle.h"
 #import "EZNavigationController.h"
 
+
 @interface ShareSearchViewController ()
 {
     NSMutableArray      *_datas;

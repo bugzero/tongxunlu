@@ -252,6 +252,7 @@
 {
     _deptId = [[NSUserDefaults standardUserDefaults]objectForKey:@"searchDeptId"];
     [_popover dismissPopoverAnimated:YES];
+    [self searchBarSearchButtonClicked:_searchBar];
 }
 
 - (IBAction)searchAction:(id)sender {
@@ -298,6 +299,13 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     NSString *keyword = [searchBar text];
+    
+    NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
+    
+    keyword = [keyword stringByTrimmingCharactersInSet:whitespace];
+    
+    NSLog(@"%@",_deptId);
+    
     NSString *compId = [TXLKeyChainHelper getUserNameWithService:USER_COMP_ID];
 //    if (![keyword isEqualToString:@""]) {
         [[EZRequest instance]postDataWithPath:@"/txlmain-manage/mobile/user/s/mobileSearch.txl" params:@{@"filter.name": keyword,@"filter.depId":_deptId,@"filter.compId":compId} success:^(NSDictionary *result) {

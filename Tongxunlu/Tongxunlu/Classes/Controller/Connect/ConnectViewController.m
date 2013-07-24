@@ -59,9 +59,9 @@ static NSArray* dropList = nil;///@{@"个人通讯录",@"公司讯录",@"共享�
     
     [self loadDropDownList];
     
-    UIButton* leftBtn = [UIButton barButtonWithTitle:@"注销" target:self action:@selector(actionSheet)];
-    
-    [self setLeftbarItem:leftBtn];
+//    UIButton* leftBtn = [UIButton barButtonWithTitle:@"注销" target:self action:@selector(actionSheet)];
+//    
+//    [self setLeftbarItem:leftBtn];
 }
 
 -(void)actionSheet{
@@ -207,10 +207,14 @@ static NSArray* dropList = nil;///@{@"个人通讯录",@"公司讯录",@"共享�
     _contractVC.delegate = self;
     [_contentView removeAllSubviews];
     [_contentView addSubview:_contractVC.view];
-    UIButton* btn = [UIButton buttonWithType:UIButtonTypeContactAdd];
+//    UIButton* btn = [UIButton buttonWithType:UIButtonTypeContactAdd];
+//    
+//    [btn addTarget:self action:@selector(insertNewObject:) forControlEvents:UIControlEventTouchUpInside];
+//    [self setRightbarItem:btn];
     
-    [btn addTarget:self action:@selector(insertNewObject:) forControlEvents:UIControlEventTouchUpInside];
-    [self setRightbarItem:btn];
+    UIButton* rightBtn = [UIButton barButtonWithTitle:@"新增" target:self action:@selector(insertNewObject:)];
+    [self setRightbarItem:rightBtn];
+    
     
 }
 - (void)clickABPerson:(ABNewPersonViewController*)person

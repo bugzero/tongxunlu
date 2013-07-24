@@ -8,8 +8,10 @@
 
 #import "EZRootViewController.h"
 #import "DeptChoiceViewController.h"
+#import "FAFancyMenuView.h"
+#import <MessageUI/MFMessageComposeViewController.h>
 
-@interface CompanySearchViewController : EZRootViewController<CloseDelegate,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface CompanySearchViewController : EZRootViewController<FAFancyMenuViewDelegate,CloseDelegate,UISearchBarDelegate,UITableViewDataSource,UITableViewDelegate,MFMessageComposeViewControllerDelegate>
 
 @property(strong, nonatomic) IBOutlet UITableView *tableView;
 @property(strong, nonatomic) IBOutlet UISearchBar *searchBar;

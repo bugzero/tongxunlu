@@ -83,6 +83,8 @@
     MFMessageComposeViewController *picker = [[MFMessageComposeViewController alloc] init];
     picker.messageComposeDelegate = self;
     
+    picker.recipients = [NSArray arrayWithObjects:self.userPhoneLable.text, nil];
+    
     [self presentViewController:picker animated:YES completion:^{
         
     }];
@@ -153,6 +155,8 @@
     self.positionLabel.text = [dict objectForKey:@"position"];
 
     self.qqLabel.text = [dict objectForKey:@"qq"];
+    
+    self.userPhoneLable.text = [dict objectForKey:@"userPhone"];
 
 //    self.userId = [dict objectForKey:@"userId"];
 

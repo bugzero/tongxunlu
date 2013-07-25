@@ -7,6 +7,7 @@
 //
 
 #import "EZRootViewController.h"
+#import "SiteViewCtl.h"
 
 @interface SettingViewController : EZRootViewController
 

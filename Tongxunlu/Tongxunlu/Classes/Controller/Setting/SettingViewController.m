@@ -10,7 +10,9 @@
 #import "EZNavigationController.h"
 
 @interface SettingViewController ()
-
+{
+    SiteViewCtl     *_viewCtl;
+}
 @end
 
 @implementation SettingViewController
@@ -21,6 +23,7 @@
     
     if (self) {
         self.showNavigationBar = YES;
+        _viewCtl = [[SiteViewCtl alloc] initWithNibName:@"SiteViewCtl" bundle:nil];
     }
     return self;
 }
@@ -34,6 +37,8 @@
     [self setTitle:@"个人中心"];
     
     UIButton* rightBtn = [UIButton barButtonWithTitle:@"设置" target:self action:@selector(setting)];
+    
+    [self.view addSubview:_viewCtl.view];
     
     [self setRightbarItem:rightBtn];
 	// Do any additional setup after loading the view.

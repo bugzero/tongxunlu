@@ -123,6 +123,12 @@
 		D0A71A2C179284F2003B4B2C /* ShareSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0A71A2A179284F1003B4B2C /* ShareSearchViewController.xib */; };
 		D0A71A2F179286B7003B4B2C /* ShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A71A2E179286B6003B4B2C /* ShareCell.m */; };
 		D0A71A331792982C003B4B2C /* ShareDetailViewControlle.m in Sources */ = {isa = PBXBuildFile; fileRef = D0A71A3117929829003B4B2C /* ShareDetailViewControlle.m */; };
+		D0E13EDD17A17A1E008D4452 /* CollapseClick.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E13ED717A17A1E008D4452 /* CollapseClick.m */; };
+		D0E13EDE17A17A1E008D4452 /* CollapseClickArrow.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E13ED917A17A1E008D4452 /* CollapseClickArrow.m */; };
+		D0E13EDF17A17A1E008D4452 /* CollapseClickCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E13EDB17A17A1E008D4452 /* CollapseClickCell.m */; };
+		D0E13EE017A17A1E008D4452 /* CollapseClickCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0E13EDC17A17A1E008D4452 /* CollapseClickCell.xib */; };
+		D0E13EE617A17D1C008D4452 /* SiteViewCtl.m in Sources */ = {isa = PBXBuildFile; fileRef = D0E13EE317A17D1C008D4452 /* SiteViewCtl.m */; };
+		D0E13EE717A17D1C008D4452 /* SiteViewCtl.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0E13EE417A17D1C008D4452 /* SiteViewCtl.xib */; };
 		D0F27FE8178EBF2A0093C32C /* CompanySearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0F27FE6178EBF2A0093C32C /* CompanySearchViewController.m */; };
 		D0F27FE9178EBF2A0093C32C /* CompanySearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F27FE7178EBF2A0093C32C /* CompanySearchViewController.xib */; };
 		D0F27FEB178EF7DB0093C32C /* icon_card_nor.png in Resources */ = {isa = PBXBuildFile; fileRef = D0F27FEA178EF7DB0093C32C /* icon_card_nor.png */; };
@@ -327,6 +333,16 @@
 		D0A71A2E179286B6003B4B2C /* ShareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareCell.m; sourceTree = "<group>"; };
 		D0A71A3017929828003B4B2C /* ShareDetailViewControlle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareDetailViewControlle.h; sourceTree = "<group>"; };
 		D0A71A3117929829003B4B2C /* ShareDetailViewControlle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareDetailViewControlle.m; sourceTree = "<group>"; };
+		D0E13ED617A17A1E008D4452 /* CollapseClick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollapseClick.h; sourceTree = "<group>"; };
+		D0E13ED717A17A1E008D4452 /* CollapseClick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollapseClick.m; sourceTree = "<group>"; };
+		D0E13ED817A17A1E008D4452 /* CollapseClickArrow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollapseClickArrow.h; sourceTree = "<group>"; };
+		D0E13ED917A17A1E008D4452 /* CollapseClickArrow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollapseClickArrow.m; sourceTree = "<group>"; };
+		D0E13EDA17A17A1E008D4452 /* CollapseClickCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollapseClickCell.h; sourceTree = "<group>"; };
+		D0E13EDB17A17A1E008D4452 /* CollapseClickCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollapseClickCell.m; sourceTree = "<group>"; };
+		D0E13EDC17A17A1E008D4452 /* CollapseClickCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollapseClickCell.xib; sourceTree = "<group>"; };
+		D0E13EE317A17D1C008D4452 /* SiteViewCtl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SiteViewCtl.m; sourceTree = "<group>"; };
+		D0E13EE417A17D1C008D4452 /* SiteViewCtl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SiteViewCtl.xib; sourceTree = "<group>"; };
+		D0E13EE517A17D1C008D4452 /* SiteViewCtl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SiteViewCtl.h; sourceTree = "<group>"; };
 		D0F27FE5178EBF2A0093C32C /* CompanySearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanySearchViewController.h; sourceTree = "<group>"; };
 		D0F27FE6178EBF2A0093C32C /* CompanySearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanySearchViewController.m; sourceTree = "<group>"; };
 		D0F27FE7178EBF2A0093C32C /* CompanySearchViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompanySearchViewController.xib; sourceTree = "<group>"; };
@@ -769,6 +785,9 @@
 		837DC8251767B10800C7B0BE /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				D0E13EE317A17D1C008D4452 /* SiteViewCtl.m */,
+				D0E13EE417A17D1C008D4452 /* SiteViewCtl.xib */,
+				D0E13EE517A17D1C008D4452 /* SiteViewCtl.h */,
 				837DC8261767B12200C7B0BE /* SettingViewController.h */,
 				837DC8271767B12200C7B0BE /* SettingViewController.m */,
 			);
@@ -847,6 +866,7 @@
 		D020B40717895DCF0031FE3A /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				D0E13ED517A17A1E008D4452 /* CollapseClick */,
 				D0831B7C179F6ECD0011963C /* Menu */,
 				D020B40817895DCF0031FE3A /* MXDropDownList.h */,
 				D020B40917895DCF0031FE3A /* MXDropDownList.m */,
@@ -878,6 +898,20 @@
 				830E15BA17890B92008315B9 /* DBManager.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		D0E13ED517A17A1E008D4452 /* CollapseClick */ = {
+			isa = PBXGroup;
+			children = (
+				D0E13ED617A17A1E008D4452 /* CollapseClick.h */,
+				D0E13ED717A17A1E008D4452 /* CollapseClick.m */,
+				D0E13ED817A17A1E008D4452 /* CollapseClickArrow.h */,
+				D0E13ED917A17A1E008D4452 /* CollapseClickArrow.m */,
+				D0E13EDA17A17A1E008D4452 /* CollapseClickCell.h */,
+				D0E13EDB17A17A1E008D4452 /* CollapseClickCell.m */,
+				D0E13EDC17A17A1E008D4452 /* CollapseClickCell.xib */,
+			);
+			path = CollapseClick;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -977,6 +1011,8 @@
 				D0831B85179F6F210011963C /* sms@2x.png in Resources */,
 				D0831B86179F6F210011963C /* phone@2x.png in Resources */,
 				D0831B88179FEAE70011963C /* icon_card_nor1@2x.png in Resources */,
+				D0E13EE017A17A1E008D4452 /* CollapseClickCell.xib in Resources */,
+				D0E13EE717A17D1C008D4452 /* SiteViewCtl.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1059,6 +1095,10 @@
 				83F02A141792B54900099F92 /* DepartsEntity.m in Sources */,
 				D0831B81179F6ECD0011963C /* FAFancyButton.m in Sources */,
 				D0831B82179F6ECD0011963C /* FAFancyMenuView.m in Sources */,
+				D0E13EDD17A17A1E008D4452 /* CollapseClick.m in Sources */,
+				D0E13EDE17A17A1E008D4452 /* CollapseClickArrow.m in Sources */,
+				D0E13EDF17A17A1E008D4452 /* CollapseClickCell.m in Sources */,
+				D0E13EE617A17D1C008D4452 /* SiteViewCtl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

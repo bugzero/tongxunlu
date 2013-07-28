@@ -7,9 +7,10 @@
 //
 
 #import "SiteViewCtl.h"
+#import "LoginViewController.h"
+#import "User.h"
 
 @interface SiteViewCtl ()
-
 @end
 
 @implementation SiteViewCtl
@@ -22,7 +23,6 @@
     
     // If you want a cell open on load, run this method:
     [myCollapseClick openCollapseClickCellAtIndex:1 animated:NO];
-    
     /*
      // If you'd like multiple cells open on load, create an NSArray of NSNumbers
      // with each NSNumber corresponding to the index you'd like to open.
@@ -44,22 +44,34 @@
 
 // Required Methods
 -(int)numberOfCellsForCollapseClick {
-    return 4;
+    return 7;
 }
 
 -(NSString *)titleForCollapseClickAtIndex:(int)index {
     switch (index) {
         case 0:
-            return @"注释帐号";
+            if ([[User instance]isLogin]) {
+                return @"退出";
+            }
+            return @"登陆";
             break;
         case 1:
-            return @"登陆";
+            return @"修改密码";
             break;
         case 2:
             return @"同步通讯录";
             break;
         case 3:
-            return @"清除缓存数据";
+            return @"如何使用";
+            break;
+        case 4:
+            return @"检查更新";
+            break;
+        case 5:
+            return @"意见反馈";
+            break;
+        case 6:
+            return @"关于我们";
             break;
             
         default:
@@ -71,16 +83,38 @@
 -(UIView *)viewForCollapseClickContentViewAtIndex:(int)index {
     switch (index) {
         case 0:
-            return test1View;
+//            if (![[User instance]isLogin]) {
+//                LoginViewController  *_loginView = [[LoginViewController alloc]init];
+//                [_loginView setTitle:nil];
+//                User* user = [User instance];
+//                if (!user.loginVC) {
+//                    user.loginVC = _loginView;
+//                }
+//
+//                return _loginView.view;
+//            }else{
+////                [User logout];
+//                return [[UIView alloc]initWithFrame:CGRectMake(0, 0, 1, 1)];
+//            }
+            return [[UIView alloc]initWithFrame:CGRectMake(0, 0, 1, 1)];
             break;
         case 1:
-            return test2View;
+            return test1View;
             break;
         case 2:
             return test3View;
             break;
         case 3:
             return [[UIView alloc]initWithFrame:CGRectMake(0, 0, 1, 1)];
+            break;
+        case 4:
+            return [[UIView alloc]initWithFrame:CGRectMake(0, 0, 1, 1)];
+            break;
+        case 5:
+            return [[UIView alloc]initWithFrame:CGRectMake(0, 0, 1, 1)];
+            break;
+        case 6:
+            return test3View;
             break;
             
         default:
@@ -107,6 +141,15 @@
 
 -(void)didClickCollapseClickCellAtIndex:(int)index isNowOpen:(BOOL)open {
     NSLog(@"%d and it's open:%@", index, (open ? @"YES" : @"NO"));
+    if (index==0) {
+        if ([[User instance]isLogin]) {
+            [User logout];
+        }else{
+            [User loginWithBlock:^{
+            }];
+        }
+        [myCollapseClick reloadCollapseClick];
+    }
 }
 
 

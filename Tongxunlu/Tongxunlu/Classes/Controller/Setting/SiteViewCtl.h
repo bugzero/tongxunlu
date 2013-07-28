@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CollapseClick.h"
 
-@interface SiteViewCtl : UIViewController <CollapseClickDelegate,UITextFieldDelegate> {
+@interface SiteViewCtl : EZRootViewController <CollapseClickDelegate,UITextFieldDelegate> {
     IBOutlet UIView *test1View;
     IBOutlet UIView *test2View;
     IBOutlet UIView *test3View;

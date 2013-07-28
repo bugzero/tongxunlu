@@ -314,6 +314,9 @@
     NSPredicate * pred      = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     if ([searchString length]!=0) {
         if ([pred evaluateWithObject:searchString]) { //判断是否是数字
+            if (searchString.length < 3) {
+                return;
+            }
             NSArray *phones=[phoneDic allKeys];
             for (NSString *phone in phones) {
                 if ([self searchResult:phone searchText:searchString]) {

@@ -111,6 +111,7 @@
 		D0236F8E1792388A005E5976 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0236F8D1792388A005E5976 /* MessageUI.framework */; };
 		D0537C71178FF2B5004B1467 /* CompanyDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D0537C6F178FF2B5004B1467 /* CompanyDetailViewController.m */; };
 		D0537C72178FF2B5004B1467 /* CompanyDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0537C70178FF2B5004B1467 /* CompanyDetailViewController.xib */; };
+		D05B658E17A55E69002EEDFB /* TXLSyncView.m in Sources */ = {isa = PBXBuildFile; fileRef = D05B658D17A55E69002EEDFB /* TXLSyncView.m */; };
 		D0831B81179F6ECD0011963C /* FAFancyButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D0831B7E179F6ECD0011963C /* FAFancyButton.m */; };
 		D0831B82179F6ECD0011963C /* FAFancyMenuView.m in Sources */ = {isa = PBXBuildFile; fileRef = D0831B80179F6ECD0011963C /* FAFancyMenuView.m */; };
 		D0831B85179F6F210011963C /* sms@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D0831B83179F6F210011963C /* sms@2x.png */; };
@@ -315,6 +316,8 @@
 		D0537C6E178FF2B5004B1467 /* CompanyDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CompanyDetailViewController.h; sourceTree = "<group>"; };
 		D0537C6F178FF2B5004B1467 /* CompanyDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CompanyDetailViewController.m; sourceTree = "<group>"; };
 		D0537C70178FF2B5004B1467 /* CompanyDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CompanyDetailViewController.xib; sourceTree = "<group>"; };
+		D05B658C17A55E68002EEDFB /* TXLSyncView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXLSyncView.h; sourceTree = "<group>"; };
+		D05B658D17A55E69002EEDFB /* TXLSyncView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXLSyncView.m; sourceTree = "<group>"; };
 		D0831B7D179F6ECD0011963C /* FAFancyButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAFancyButton.h; sourceTree = "<group>"; };
 		D0831B7E179F6ECD0011963C /* FAFancyButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FAFancyButton.m; sourceTree = "<group>"; };
 		D0831B7F179F6ECD0011963C /* FAFancyMenuView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FAFancyMenuView.h; sourceTree = "<group>"; };
@@ -790,6 +793,8 @@
 				D0E13EE517A17D1C008D4452 /* SiteViewCtl.h */,
 				837DC8261767B12200C7B0BE /* SettingViewController.h */,
 				837DC8271767B12200C7B0BE /* SettingViewController.m */,
+				D05B658C17A55E68002EEDFB /* TXLSyncView.h */,
+				D05B658D17A55E69002EEDFB /* TXLSyncView.m */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1099,6 +1104,7 @@
 				D0E13EDE17A17A1E008D4452 /* CollapseClickArrow.m in Sources */,
 				D0E13EDF17A17A1E008D4452 /* CollapseClickCell.m in Sources */,
 				D0E13EE617A17D1C008D4452 /* SiteViewCtl.m in Sources */,
+				D05B658E17A55E69002EEDFB /* TXLSyncView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

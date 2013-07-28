@@ -99,10 +99,10 @@
             return [[UIView alloc]initWithFrame:CGRectMake(0, 0, 1, 1)];
             break;
         case 1:
-            return test1View;
+            return modifyPwdView;
             break;
         case 2:
-            return test3View;
+            return syncView;
             break;
         case 3:
             return [[UIView alloc]initWithFrame:CGRectMake(0, 0, 1, 1)];
@@ -114,11 +114,11 @@
             return [[UIView alloc]initWithFrame:CGRectMake(0, 0, 1, 1)];
             break;
         case 6:
-            return test3View;
+            return aboutView;
             break;
             
         default:
-            return test1View;
+            return aboutView;
             break;
     }
 }

@@ -8,11 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "CollapseClick.h"
+#import "TXLSyncView.h"
 
 @interface SiteViewCtl : EZRootViewController <CollapseClickDelegate,UITextFieldDelegate> {
-    IBOutlet UIView *test1View;
-    IBOutlet UIView *test2View;
-    IBOutlet UIView *test3View;
+    IBOutlet UIView *modifyPwdView;
+    IBOutlet UIView *aboutView;;
+//    IBOutlet UIView *test3View;
+    IBOutlet TXLSyncView *syncView;
     
     __weak IBOutlet CollapseClick *myCollapseClick;
 }

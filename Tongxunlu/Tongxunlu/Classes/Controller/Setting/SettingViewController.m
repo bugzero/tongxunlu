@@ -24,6 +24,12 @@
     if (self) {
         self.showNavigationBar = YES;
         _viewCtl = [[SiteViewCtl alloc] initWithNibName:@"SiteViewCtl" bundle:nil];
+       
+        CGRect frame = _viewCtl.view.frame;
+        
+       frame.origin.y += 45;
+        
+       _viewCtl.view.frame = frame;
     }
     return self;
 }
@@ -34,13 +40,13 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage themeImageNamed:@"bg_call.png"]];
     
-    [self setTitle:@"个人中心"];
+    [self setTitle:@"设置"];
     
-    UIButton* rightBtn = [UIButton barButtonWithTitle:@"设置" target:self action:@selector(setting)];
+//    UIButton* rightBtn = [UIButton barButtonWithTitle:@"设置" target:self action:@selector(setting)];
     
     [self.view addSubview:_viewCtl.view];
     
-    [self setRightbarItem:rightBtn];
+//    [self setRightbarItem:rightBtn];
 	// Do any additional setup after loading the view.
 }
 

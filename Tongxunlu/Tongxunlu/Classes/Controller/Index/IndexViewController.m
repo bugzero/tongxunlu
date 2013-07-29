@@ -125,7 +125,7 @@
             CallViewController* callVc = [[CallViewController alloc]initWithDefaultFrame:CGRectMake(0, 0, FULL_WIDTH, CONTENT_HEIGHT)];
             vcl = [[EZNavigationController alloc]initWithRootViewController:callVc];
             
-            [callVc showKeyBoard];
+//            [callVc showKeyBoard];
             self.callVC = callVc;
         }
             break;

@@ -8,11 +8,6 @@
 
 #import "EZNavigationController.h"
 
-@interface EZNavigationController (){
-    UIView *_maskingView;
-}
-@end
-
 @implementation EZNavigationController
 
 - (id)init
@@ -81,16 +76,17 @@
     viewController.ezNavigationController = self;
     
     if (None != animation) {
-        if (nil == _maskingView) {
-            _maskingView = [[UIView alloc] initWithFrame:self.view.bounds];
-            _maskingView.backgroundColor = [UIColor blackColor];
-            _maskingView.alpha = 0;
-            [self.view addSubview:_maskingView];
-        } else {
-            _maskingView.alpha = 0;
-            [self.view bringSubviewToFront:_maskingView];
-        }
-        
+//        if (nil == _maskingView) {
+//            _maskingView = [[UIView alloc] initWithFrame:self.view.bounds];
+//            _maskingView.backgroundColor = [UIColor blackColor];
+//            _maskingView.alpha = 0;
+//            [self.view addSubview:_maskingView];
+//        }
+//        else {
+//            _maskingView.alpha = 0;
+//            [self.view bringSubviewToFront:_maskingView];
+//        }
+//        
         switch (animation) {
                 /// 水平进入的时候，需要一个左右扫动手势切换回前一个页面
             case PageTransitionHorizontal:{
@@ -147,7 +143,13 @@
     
     viewController.view.frame = tempRect;
     
-    [self.view addSubview:viewController.view];
+    if (viewController.view.superview == self.view) {
+        [self.view bringSubviewToFront:viewController.view];
+    }
+    else{
+        [self.view addSubview:viewController.view];
+    }
+    viewController.view.hidden = NO;
     
     oldViewController.view.clipsToBounds = YES;
     
@@ -157,8 +159,9 @@
                          [oldViewController.view setTransform:transform];
                          
                          viewController.view.frame = originalRect;
-                         _maskingView.alpha = 1;
-                     } completion:^(BOOL finished){                         
+
+//                         _maskingView.alpha = 0.6;
+                     } completion:^(BOOL finished){
                      }];
 }
 
@@ -216,7 +219,7 @@
                          [_topViewController.view setTransform:transform];
                          
                          popedViewController.view.frame = tempRect;
-                         _maskingView.alpha = 0;
+//                         _maskingView.alpha = 0;
                          
                      }
                      completion:^(BOOL finished) {
@@ -231,7 +234,7 @@
                          [popedViewController viewDidUnload];
                          
                          [self.view bringSubviewToFront:_topViewController.view];
-                         _maskingView.alpha = 1;
+//                         _maskingView.alpha = 1;
                      }];
 }
 

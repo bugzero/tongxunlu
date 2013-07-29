@@ -72,7 +72,7 @@
     EZNavigationController* navi = [EZinstance instanceWithKey:K_NAVIGATIONCTL];
     
     if (!_callView) {
-        _callView = [[UIControl alloc]initWithFrame:CGRectMake(80, FULL_HEIGHT, 240, 49)];
+        _callView = [[UIControl alloc]initWithFrame:CGRectMake(80, 100, 240, 49)];
         _callView.backgroundColor = [UIColor clearColor];
         [_callView addTarget:self action:@selector(hideKeyBoard) forControlEvents:UIControlEventTouchUpInside];
         

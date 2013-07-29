@@ -69,9 +69,9 @@
         User* user = [User instance];
         user.action = aAction;
         user.selector = aSelector;
-        if (!user.loginVC) {
+//        if (!user.loginVC) {
             user.loginVC = [[LoginViewController alloc]init];
-        }
+//        }
 
         
         [user.navigationCtl pushViewController:user.loginVC withAnimation:PageTransitionVertical];
@@ -92,9 +92,9 @@
         user.action = nil;
         user.selector = nil;
         user.loginSuccess = block;
-        if (!user.loginVC) {
+//        if (!user.loginVC) {
             user.loginVC = [[LoginViewController alloc]init];
-        }
+//        }
         
         
         [user.navigationCtl pushViewController:user.loginVC withAnimation:PageTransitionVertical];

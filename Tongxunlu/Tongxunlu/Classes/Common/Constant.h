@@ -35,6 +35,7 @@
 #define USER_COMP_ID                @"comp_id"
 
 #define COMP_USER_CACHE_DATAS       @"compCacheKey"
+#define COMP_DEPT_CACHE_DATAS       @"compDeptCacheKey"
 #define SHARE_ALLIANCE_CACHE_DATAS  @"shareAllianceCacheKey"
 #define SHARE_DETAIL_CACHE_DATAS    @"shareDetailCacheKey"
 

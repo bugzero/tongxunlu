@@ -44,6 +44,11 @@
     _datas = [DictStoreSupport readPoConfigWithKey:SHARE_ALLIANCE_CACHE_DATAS];
     if (!_datas) {
         _datas = [[NSMutableArray alloc]init];
+    }else{
+        if (syncShareData) {
+            [self.tableView reloadData];
+        }
+    
     }
 }
 

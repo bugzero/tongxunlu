@@ -16,7 +16,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 #import <Foundation/Foundation.h>
-
+extern BOOL syncCompData;
+extern BOOL syncShareData;
 @interface DictStoreSupport : NSObject {
 	
 	//变量名以po,持久对象,程序退出保存

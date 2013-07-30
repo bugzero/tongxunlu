@@ -7,6 +7,7 @@
 //
 
 #import "TXLSyncView.h"
+#import "DictStoreSupport.h"
 
 @implementation TXLSyncView
 
@@ -19,7 +20,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     
-    return 4;
+    return 2;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -31,16 +32,16 @@
     }
     NSString *title = nil;
     switch (indexPath.row) {
+//        case 0:
+//            title = @"备份个人通讯录";
+//            break;
+//        case 1:
+//            title = @"恢复个人通讯录";
+//            break;
         case 0:
-            title = @"备份个人通讯录";
-            break;
-        case 1:
-            title = @"恢复个人通讯录";
-            break;
-        case 2:
             title = @"同步公司通讯录";
             break;
-        case 3:
+        case 1:
             title = @"同步共享通讯录";
             break;
             
@@ -58,9 +59,52 @@
 
 #pragma mark - Table view delegate
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 50;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    NSNumber *userId = [DictStoreSupport readRtConfigWithKey:@"userId"];
+    if (indexPath.row == 0) {
+        syncCompData = YES;
+        //请求部门数据
+        [[EZRequest instance]postDataWithPath:@"/txlmain-manage/mobile/department/mobileSearch.txl" params:@{} success:^(NSDictionary *result) {
+            NSArray  *department = [result objectForKey:@"departs"];
+            //默认先保存到字典文件，以后替换成sqlite
+            if (department && [department count] > 0) {
+                [DictStoreSupport writeConfigWithKey:COMP_DEPT_CACHE_DATAS WithValue:department];
+                [self showNotice:@"同步部门数据成功！"];
+            }
+        } failure:^(NSError *error) {
+            [self showNotice:@"网络连接异常"];
+            //        DBG(@"%@",error);
+        }];
+        
+        NSString *compId = [TXLKeyChainHelper getUserNameWithService:USER_COMP_ID];
+        [[EZRequest instance]postDataWithPath:@"/txlmain-manage/mobile/user/s/mobileSearch.txl" params:@{@"filter.name": @"",@"filter.depId":@"",@"filter.compId":compId} success:^(NSDictionary *result) {
+            //_datas = [result objectForKey:@"users"];
+            [DictStoreSupport writeConfigWithKey:COMP_USER_CACHE_DATAS WithValue:[result objectForKey:@"users"]];
+            [self showNotice:@"同步公司通讯录成功"];
+        } failure:^(NSError *error) {
+            [self showNotice:@"网络连接异常"];
+            //        DBG(@"%@",error);
+        }];
+    }else if (indexPath.row == 1) {
+        syncShareData = YES;
+        NSString *compCode = [TXLKeyChainHelper getUserNameWithService:USER_COMP_CODE];
+        [[EZRequest instance]postDataWithPath:@"/txlshare-manage/mobile/shareBook/mobileSearch.txl" params:@{@"outUserId":userId,@"compCode":compCode,@"filter.sbName":@""} success:^(NSDictionary *result) {
+            NSArray *_datas = [result objectForKey:@"shareBooks"];
+            if (_datas && [_datas count] > 0) {
+                [DictStoreSupport writeConfigWithKey:SHARE_ALLIANCE_CACHE_DATAS WithValue:_datas];
+            }
+            [self showNotice:@"同步共享通讯录" duration:2.0];
+        } failure:^(NSError *error) {
+            [self showNotice:@"网络连接异常"];
+            //        DBG(@"%@",error);
+        }];
+    }
 }
 
 /*

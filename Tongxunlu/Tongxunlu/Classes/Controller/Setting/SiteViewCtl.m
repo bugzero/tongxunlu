@@ -44,7 +44,7 @@
 
 // Required Methods
 -(int)numberOfCellsForCollapseClick {
-    return 7;
+    return 6;
 }
 
 -(NSString *)titleForCollapseClickAtIndex:(int)index {
@@ -68,9 +68,6 @@
             return @"检查更新";
             break;
         case 5:
-            return @"意见反馈";
-            break;
-        case 6:
             return @"关于我们";
             break;
             
@@ -111,9 +108,6 @@
             return [[UIView alloc]initWithFrame:CGRectMake(0, 0, 1, 1)];
             break;
         case 5:
-            return [[UIView alloc]initWithFrame:CGRectMake(0, 0, 1, 1)];
-            break;
-        case 6:
             return aboutView;
             break;
             

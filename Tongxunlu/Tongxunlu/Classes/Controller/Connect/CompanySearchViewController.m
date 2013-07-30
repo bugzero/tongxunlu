@@ -87,7 +87,7 @@
         [self deepArray:topObj.depts noBingos:noBingos level:2];
     }
 
-    NSLog(@"%@",_deptDatas);
+//    NSLog(@"%@",_deptDatas);
     
     
     NSDictionary *plistDict = [NSDictionary dictionaryWithObject:_deptDatas forKey:@"Objects" ];
@@ -111,26 +111,34 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    //请求部门数据
-    [[EZRequest instance]postDataWithPath:@"/txlmain-manage/mobile/department/mobileSearch.txl" params:@{} success:^(NSDictionary *result) {
-        
-        //// for test
-//        ListEntity* list = [[ListEntity alloc]initWithDictionary:result listClass:[DepartsEntity class] lisKey:@"departs"];
-        
-//        DBG(@"%@",list);
-//        for (id val in list.list) {
-//            DBG(@"%@",val);
-//        }
-//        DBG(@"%@",list.list);
-        
-        /// test end
-        NSArray  *departs = [result objectForKey:@"departs"];
-        [self buildDatas:departs];
-        
-    } failure:^(NSError *error) {
-        [self showNotice:@"网络连接异常"];
-        //        DBG(@"%@",error);
-    }];
+    NSArray *departs = [DictStoreSupport readRtConfigWithKey:COMP_DEPT_CACHE_DATAS];
+    if (!departs) {
+        //请求部门数据
+        [[EZRequest instance]postDataWithPath:@"/txlmain-manage/mobile/department/mobileSearch.txl" params:@{} success:^(NSDictionary *result) {
+            
+            //// for test
+            //        ListEntity* list = [[ListEntity alloc]initWithDictionary:result listClass:[DepartsEntity class] lisKey:@"departs"];
+            
+            //        DBG(@"%@",list);
+            //        for (id val in list.list) {
+            //            DBG(@"%@",val);
+            //        }
+            //        DBG(@"%@",list.list);
+            
+            /// test end
+            NSArray *departs = [result objectForKey:@"departs"];
+            [self buildDatas:departs];
+            
+        } failure:^(NSError *error) {
+            [self showNotice:@"网络连接异常"];
+            //        DBG(@"%@",error);
+        }];
+    }else{
+        if (syncCompData) {
+            [self buildDatas:departs];
+        }
+    }
+    
 }
 
 - (void)viewDidLoad
@@ -155,6 +163,11 @@
     _datas = [DictStoreSupport readPoConfigWithKey:COMP_USER_CACHE_DATAS];
     if (!_datas) {
         _datas = [[NSMutableArray alloc]init];
+    }else{
+        if (syncCompData) {
+            [self.tableView reloadData];
+        }
+    
     }
     // Do any additional setup after loading the view from its nib.
 }
@@ -298,13 +311,20 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    
     NSString *keyword = [searchBar text];
     
     NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
     
     keyword = [keyword stringByTrimmingCharactersInSet:whitespace];
     
-    NSLog(@"%@",_deptId);
+    
+//    _datas = [DictStoreSupport readRtConfigWithKey:COMP_USER_CACHE_DATAS];
+//    if (_datas && [keyword isEqualToString:@""] && [_deptId isEqualToString:@""]) {
+//        [self.tableView reloadData];
+//        return;
+//    }
+    //NSLog(@"%@",_deptId);
     
     NSString *compId = [TXLKeyChainHelper getUserNameWithService:USER_COMP_ID];
 //    if (![keyword isEqualToString:@""]) {

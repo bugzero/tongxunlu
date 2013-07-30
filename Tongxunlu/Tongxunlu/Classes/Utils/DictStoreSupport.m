@@ -9,6 +9,8 @@
 @synthesize	rtDict = _rtDict;
 @synthesize	tempDict = tempDict;
 
+BOOL syncCompData = NO;
+BOOL syncShareData = NO;
 #pragma mark -
 #pragma mark sharedSingleton methods
 

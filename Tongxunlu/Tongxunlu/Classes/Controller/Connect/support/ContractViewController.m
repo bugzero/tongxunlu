@@ -64,7 +64,6 @@
             [DictStoreSupport writeConfigWithKey:personPhone WithValue:personname];
             [phoneDic setObject:(__bridge id)(record) forKey:[NSString stringWithFormat:@"%@%d",personPhone,recordID]];
             
-            
         }
         char first=pinyinFirstLetter([personname characterAtIndex:0]);
         NSString *sectionName;

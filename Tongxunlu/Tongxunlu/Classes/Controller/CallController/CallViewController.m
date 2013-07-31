@@ -61,7 +61,6 @@
 #pragma -mark
 #pragma -mark load content
 -(void)loadContent{
-    [self showKeyBoard];
     [self loadCallRecord];
 }
 
@@ -158,6 +157,8 @@
         [alert show];
     }
     [EZinstance makeCall:_keyBoard.number];
+    
+    [_callRecord reloadData];
 }
 
 @end

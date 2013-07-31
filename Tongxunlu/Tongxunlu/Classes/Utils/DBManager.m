@@ -7,7 +7,6 @@
 //
 
 #import "DBManager.h"
-#import "FMDatabase.h"
 
 #define DB_NAME @"txl.sqlite"
 #define FMDBQuickCheck(SomeBool) { if (!(SomeBool)) { NSLog(@"Failure on line %d", __LINE__); abort(); } }
@@ -105,4 +104,13 @@
     [_db executeUpdate:sql];
 }
 
+-(void)excuteQueryWithSqls:(NSArray *)sqls{
+    [_db beginTransaction];
+    for (NSString* sql in sqls) {
+        if (!isEmptyStr(sql)) {
+            [_db executeUpdate:sql];
+        }
+    }
+    [_db commit];
+}
 @end

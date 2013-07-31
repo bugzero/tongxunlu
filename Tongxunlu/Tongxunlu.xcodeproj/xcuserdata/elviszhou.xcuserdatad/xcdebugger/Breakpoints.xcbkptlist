@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Tongxunlu/Classes/Utils/DBManager.m"
-         timestampString = "396946823.710563"
+         timestampString = "396953993.186491"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "36"
-         endingLineNumber = "36"
+         startingLineNumber = "35"
+         endingLineNumber = "35"
          landmarkName = "-initDatabase"
          landmarkType = "5">
       </FileBreakpoint>

@@ -11,6 +11,7 @@
 #import "POAPinyin.h"
 #import <EventKit/EventKit.h>
 #import "PersonViewController.h"
+#import "DBManager.h"
 
 @implementation ContractViewController
 @synthesize delegate = _delegate;
@@ -47,6 +48,7 @@
                       CFRangeMake(0, CFArrayGetCount(results)),
                       (CFComparatorFunction) ABPersonComparePeopleByName,
                       (void*) ABPersonGetSortOrdering());
+    
     //遍历所有联系人
     for (int k=0;k<CFArrayGetCount(mresults);k++) {
         ABRecordRef record=CFArrayGetValueAtIndex(mresults,k);
@@ -63,8 +65,6 @@
             }
             
             [phoneDic setObject:(__bridge id)(record) forKey:[NSString stringWithFormat:@"%@%d",personPhone,recordID]];
-            
-            
         }
         char first=pinyinFirstLetter([personname characterAtIndex:0]);
         NSString *sectionName;
@@ -141,6 +141,8 @@
     self.tableView.delegate = self;
     
     [self loadContacts];
+    
+    [self recordInSql];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -403,6 +405,43 @@
 		return YES;
 	else
 		return NO;
+}
+
+#pragma -mark
+#pragma -mark record in sqllite
+-(void)recordInSql{
+    
+    NSArray *phones=[phoneDic allKeys];
+    if (0 == [phones count]) {
+        return;
+    }
+    
+    FMDatabase* db = [[EZinstance instanceWithKey:K_DBMANAGER] database];
+    [db beginTransaction];
+    [db executeUpdate:@"DROP TABLE `person`;"];
+    [db executeUpdate:@"CREATE TABLE \"person\" (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, phone TEXT, name TEXT);"];
+    
+    
+    for (NSString *phone in phones) {
+        ABRecordRef person=(__bridge ABRecordRef)([phoneDic objectForKey:phone]);
+        NSString *name=(__bridge NSString *)ABRecordCopyCompositeName(person);
+        
+        [db executeUpdate:@"INSERT INTO `person`(phone,name) VALUES(?,?)",name,phone];
+//        if ([self searchResult:phone searchText:searchString]) {
+//            ABRecordRef person=(__bridge ABRecordRef)([phoneDic objectForKey:phone]);
+//            ABRecordID recordID=ABRecordGetRecordID(person);
+//            NSString *ff=[NSString stringWithFormat:@"%d",recordID];
+//            
+//            NSString *name=(__bridge NSString *)ABRecordCopyCompositeName(person);
+//            NSMutableDictionary *record=[[NSMutableDictionary alloc] init];
+//            [record setObject:name forKey:@"name"];
+//            [record setObject:[phone substringToIndex:(phone.length-ff.length)] forKey:@"phone"];
+//            [record setObject:[NSNumber numberWithInt:recordID] forKey:@"ID"];
+//            [filteredArray addObject:record];
+//            NSLog(@"%@",filteredArray);
+//        }
+    }
+    [db commit];
 }
 
 @end

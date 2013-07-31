@@ -113,6 +113,8 @@
     [self.view addSubview:navigationBar.view];
     
     [EZinstance setInstance:navigationBar key:K_NAVIGATIONCTL];
+    
+    [self.barController.tabBar selectItemAtIndex:1];
 }
 
 #pragma -mark

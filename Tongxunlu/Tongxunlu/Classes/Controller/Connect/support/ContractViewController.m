@@ -61,7 +61,7 @@
             if ([str isEqualToString:@"+86"]) {
                 personPhone=[personPhone substringFromIndex:3];
             }
-            
+            [DictStoreSupport writeConfigWithKey:personPhone WithValue:personname];
             [phoneDic setObject:(__bridge id)(record) forKey:[NSString stringWithFormat:@"%@%d",personPhone,recordID]];
             
             

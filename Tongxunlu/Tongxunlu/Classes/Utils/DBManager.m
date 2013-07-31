@@ -62,7 +62,7 @@
 		}
 	}
     
-//    [self test];
+    [self test];
 	
 	return success;
 }
@@ -81,6 +81,10 @@
 -(void)test{
     NSString* sql = [NSString stringWithFormat:@"INSERT INTO `callrecord`(phone,time,name) VALUES('%@','%ld','%@')",@"15868493753",time(NULL),@"崆崆"];
     [_db executeUpdate:sql];
+    
+    
+    NSString* sql1 = [NSString stringWithFormat:@"INSERT INTO `callrecord`(phone,time,name) VALUES('%@','%ld','%@')",@"13588493549",time(NULL),@"大笨钟"];
+    [_db executeUpdate:sql1];
     
     NSString* query = @"SELECT count(*)  FROM 'callrecord';";
     FMResultSet* set = [_db executeQuery:query];

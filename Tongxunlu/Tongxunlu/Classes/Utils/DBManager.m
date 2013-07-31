@@ -9,7 +9,7 @@
 #import "DBManager.h"
 #import "FMDatabase.h"
 
-#define DB_NAME @"txl.db"
+#define DB_NAME @"txl.sqlite"
 #define FMDBQuickCheck(SomeBool) { if (!(SomeBool)) { NSLog(@"Failure on line %d", __LINE__); abort(); } }
 
 @interface DBManager(){
@@ -17,6 +17,7 @@
 }
 
 -(void)openDB;
+
 @end
 
 @implementation DBManager
@@ -38,8 +39,9 @@
 	NSArray  *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
 	NSString *documentsDirectory = [paths objectAtIndex:0];
 	NSString *writableDBPath = [documentsDirectory stringByAppendingPathComponent:DB_NAME];
-	//NSLog(@"%@", writableDBPath);
+    NSLog(@"%@", writableDBPath);
 	success = [fm fileExistsAtPath:writableDBPath];
+    
 	
 	if(!success){
 		NSString *defaultDBPath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:DB_NAME];
@@ -60,6 +62,8 @@
 			success = NO;
 		}
 	}
+    
+//    [self test];
 	
 	return success;
 }
@@ -71,14 +75,30 @@
     }
 }
 
--(EZEntity*)entityForQuery:(NSString*)query{
-    FMResultSet* rs = [_db executeQuery:query];
+-(void)closeDB{
+    [_db close];
+}
+
+-(void)test{
+    NSString* sql = [NSString stringWithFormat:@"INSERT INTO `callrecord`(phone,time,name) VALUES('%@','%ld','%@')",@"15868493753",time(NULL),@"崆崆"];
+    [_db executeUpdate:sql];
     
-    while ([rs next]) {
-        
+    NSString* query = @"SELECT count(*)  FROM 'callrecord';";
+    FMResultSet* set = [_db executeQuery:query];
+    
+    if ([set next]) {
+        NSLog(@"%d", [set intForColumnIndex:0]);
     }
     
-    return [[EZEntity alloc]init];
+    NSLog(@"%@",set);
+}
+
+-(FMResultSet*)excuteQuery:(NSString*)sql{
+    return [_db executeQuery:sql];
+}
+
+-(void)insertSql:(NSString*)sql{
+    [_db executeUpdate:sql];
 }
 
 @end

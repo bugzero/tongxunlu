@@ -27,5 +27,4 @@ typedef enum {
 @protocol CallViewStateDelegate <NSObject>
 
 -(void)callViewControllerWillHideKeyBoard;
-
 @end

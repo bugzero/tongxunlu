@@ -16,7 +16,7 @@
 		830E15B617890AEC008315B9 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 830E15B117890AEC008315B9 /* FMResultSet.m */; };
 		830E15B817890B1A008315B9 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 830E15B717890B19008315B9 /* libsqlite3.0.dylib */; };
 		830E15BB17890B92008315B9 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 830E15BA17890B92008315B9 /* DBManager.m */; };
-		830E15BD17892157008315B9 /* txl.db in Resources */ = {isa = PBXBuildFile; fileRef = 830E15BC17892157008315B9 /* txl.db */; };
+		830E15BD17892157008315B9 /* txl.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 830E15BC17892157008315B9 /* txl.sqlite */; };
 		837DC6971767161900C7B0BE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837DC6961767161900C7B0BE /* UIKit.framework */; };
 		837DC6991767161900C7B0BE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837DC6981767161900C7B0BE /* Foundation.framework */; };
 		837DC69B1767161900C7B0BE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837DC69A1767161900C7B0BE /* CoreGraphics.framework */; };
@@ -164,7 +164,7 @@
 		830E15B717890B19008315B9 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		830E15B917890B92008315B9 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		830E15BA17890B92008315B9 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
-		830E15BC17892157008315B9 /* txl.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = txl.db; sourceTree = "<group>"; };
+		830E15BC17892157008315B9 /* txl.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = txl.sqlite; sourceTree = "<group>"; };
 		837DC6931767161900C7B0BE /* Tongxunlu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tongxunlu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		837DC6961767161900C7B0BE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		837DC6981767161900C7B0BE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -496,7 +496,7 @@
 				83B1681A1792967200174DF3 /* btn_bg.png */,
 				D020B40B178963B80031FE3A /* NavDropDownArrowDown@2x.png */,
 				D020B40C178963B80031FE3A /* NavDropDownArrowUp@2x.png */,
-				830E15BC17892157008315B9 /* txl.db */,
+				830E15BC17892157008315B9 /* txl.sqlite */,
 				D0F864D31776FCA6000B7336 /* btn_register_selected@2x.png */,
 				D0F864D41776FCA6000B7336 /* btn_register_selected.png */,
 				D0F864D51776FCA6000B7336 /* btn_register.png */,
@@ -1001,7 +1001,7 @@
 				D0F864D81776FCA7000B7336 /* btn_register_selected.png in Resources */,
 				D0F864D91776FCA7000B7336 /* btn_register.png in Resources */,
 				D0F864DA1776FCA7000B7336 /* btn_register@2x.png in Resources */,
-				830E15BD17892157008315B9 /* txl.db in Resources */,
+				830E15BD17892157008315B9 /* txl.sqlite in Resources */,
 				D020B40D178963B80031FE3A /* NavDropDownArrowDown@2x.png in Resources */,
 				D020B40E178963B80031FE3A /* NavDropDownArrowUp@2x.png in Resources */,
 				D0F27FE9178EBF2A0093C32C /* CompanySearchViewController.xib in Resources */,
@@ -1194,8 +1194,8 @@
 				INFOPLIST_FILE = "Tongxunlu/Tongxunlu-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "27B1E6FF-E1D3-4741-8DC2-E2CE438B233F";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "27B1E6FF-E1D3-4741-8DC2-E2CE438B233F";
+				PROVISIONING_PROFILE = "83B3544F-8869-4ACB-966C-03278FDCAB8D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "83B3544F-8869-4ACB-966C-03278FDCAB8D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1210,8 +1210,8 @@
 				INFOPLIST_FILE = "Tongxunlu/Tongxunlu-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "27B1E6FF-E1D3-4741-8DC2-E2CE438B233F";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "27B1E6FF-E1D3-4741-8DC2-E2CE438B233F";
+				PROVISIONING_PROFILE = "83B3544F-8869-4ACB-966C-03278FDCAB8D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "83B3544F-8869-4ACB-966C-03278FDCAB8D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

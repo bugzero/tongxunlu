@@ -7,65 +7,26 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Tongxunlu/Classes/Controller/User/User.m"
-         timestampString = "395489819.435486"
+         filePath = "Tongxunlu/Classes/Utils/DBManager.m"
+         timestampString = "396946823.710563"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "120"
-         endingLineNumber = "120"
-         landmarkName = "-loginRequest:pwd:isRemember:"
+         startingLineNumber = "36"
+         endingLineNumber = "36"
+         landmarkName = "-initDatabase"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "Tongxunlu/Classes/Model/ListEntity.m"
-         timestampString = "395490862.414536"
+         filePath = "Tongxunlu/Classes/Controller/Index/IndexViewController.m"
+         timestampString = "396943695.167773"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "30"
-         endingLineNumber = "30"
-         landmarkName = "-initWithDictionary:listClass:lisKey:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Tongxunlu/Classes/Model/EZEntity.m"
-         timestampString = "395490881.102332"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "103"
-         endingLineNumber = "103"
-         landmarkName = "-parseValueFromDic:isParserArray:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Tongxunlu/Classes/Model/EZEntity.m"
-         timestampString = "395490918.860743"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "92"
-         endingLineNumber = "92"
-         landmarkName = "-parseValueFromDic:isParserArray:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Tongxunlu/Classes/Controller/Connect/ShareDetailViewControlle.m"
-         timestampString = "395492403.678569"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "105"
-         endingLineNumber = "105"
-         landmarkName = "-searchBarSearchButtonClicked:"
+         startingLineNumber = "84"
+         endingLineNumber = "84"
+         landmarkName = "-loadDB"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

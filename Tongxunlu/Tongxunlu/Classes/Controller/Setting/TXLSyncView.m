@@ -29,6 +29,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc]init];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     NSString *title = nil;
     switch (indexPath.row) {
@@ -67,6 +68,10 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSNumber *userId = [DictStoreSupport readRtConfigWithKey:@"userId"];
+    if (!userId) {
+        userId = [NSNumber numberWithInt:0];
+    }
+    
     if (indexPath.row == 0) {
         syncCompData = YES;
         //请求部门数据
@@ -83,6 +88,9 @@
         }];
         
         NSString *compId = [TXLKeyChainHelper getUserNameWithService:USER_COMP_ID];
+        if (isEmptyStr(compId)) {
+            compId = @"";
+        }
         [[EZRequest instance]postDataWithPath:@"/txlmain-manage/mobile/user/s/mobileSearch.txl" params:@{@"filter.name": @"",@"filter.depId":@"",@"filter.compId":compId} success:^(NSDictionary *result) {
             //_datas = [result objectForKey:@"users"];
             [DictStoreSupport writeConfigWithKey:COMP_USER_CACHE_DATAS WithValue:[result objectForKey:@"users"]];
@@ -94,6 +102,9 @@
     }else if (indexPath.row == 1) {
         syncShareData = YES;
         NSString *compCode = [TXLKeyChainHelper getUserNameWithService:USER_COMP_CODE];
+        if (isEmptyStr(compCode)){
+            compCode = @"";
+        }
         [[EZRequest instance]postDataWithPath:@"/txlshare-manage/mobile/shareBook/mobileSearch.txl" params:@{@"outUserId":userId,@"compCode":compCode,@"filter.sbName":@""} success:^(NSDictionary *result) {
             NSArray *_datas = [result objectForKey:@"shareBooks"];
             if (_datas && [_datas count] > 0) {

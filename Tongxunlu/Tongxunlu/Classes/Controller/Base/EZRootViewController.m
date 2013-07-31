@@ -94,4 +94,8 @@
 - (void)back {
     [self.ezNavigationController popViewControllerWithAnimation:_animationType];
 }
+
+-(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation{
+    return (toInterfaceOrientation  == UIInterfaceOrientationPortrait);
+}
 @end

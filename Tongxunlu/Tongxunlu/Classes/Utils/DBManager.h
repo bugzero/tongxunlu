@@ -8,9 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "EZEntity.h"
+#import "FMResultSet.h"
 
 @interface DBManager : NSObject
 
--(EZEntity*)entityForQuery:(NSString*)query;
+-(void)closeDB;
 
+-(FMResultSet*)excuteQuery:(NSString*)sql;
+
+-(void)insertSql:(NSString*)sql;
 @end

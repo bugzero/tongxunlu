@@ -121,7 +121,8 @@
 // Optional Methods
 
 -(UIColor *)colorForCollapseClickTitleViewAtIndex:(int)index {
-    return [UIColor colorWithRed:223/255.0f green:47/255.0f blue:51/255.0f alpha:1.0];
+//    return [UIColor colorWithRed:223/255.0f green:47/255.0f blue:51/255.0f alpha:1.0];
+    return RGB(94, 94, 94);
 }
 
 

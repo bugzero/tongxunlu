@@ -8,14 +8,20 @@
 
 #import "CallViewController.h"
 #import "TXLKeyBoard.h"
+#import "CallRecord.h"
 
 @interface CallViewController (){
-    TXLKeyBoard*     _keyBoard;
-    UIControl*       _maskView;
-    UIControl*       _callView;
+    TXLKeyBoard*    _keyBoard;
+    UIControl*      _maskView;
+    UIControl*      _callView;
+    CallRecord*     _callRecord;
 }
 
 -(void)loadKeyBoard;
+
+-(void)loadCallRecord;
+
+-(void)loadContent;
 @end
 
 @implementation CallViewController
@@ -37,7 +43,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage themeImageNamed:@"bg_call.png"]];
+    
+//    [self showKeyBoard];
+    [self performSelector:@selector(loadContent) withObject:nil afterDelay:0.2];
     
     [self setTitle:@"最近联系人"];
 }
@@ -48,6 +58,19 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma -mark
+#pragma -mark load content
+-(void)loadContent{
+    [self showKeyBoard];
+    [self loadCallRecord];
+}
+
+
+-(void)loadCallRecord{
+    _callRecord = [[CallRecord alloc]initWithFrame:CONTENT_VIEW_FRAME];
+    
+    [self.view addSubview:_callRecord];
+}
 #pragma -mark
 #pragma -mark keyBoard method
 -(void)loadKeyBoard{
@@ -134,20 +157,7 @@
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"号码为空" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alert show];
     }
-    [self makeCall:_keyBoard.number];
-}
-
-- (void)makeCall:(NSString *)number
-{
-//    NSString *txt = number;
-    NSURL* telUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",number]];
-    [[UIApplication sharedApplication] openURL:telUrl];
-//    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"[0-9]{4}[-]{0,1}[0-9]{4}?" options:NSRegularExpressionCaseInsensitive error:nil];
-//    NSTextCheckingResult *result = [regex firstMatchInString:txt options:0 range:NSMakeRange(0, [txt length])];
-//    NSString *cleanedString = [[[txt substringWithRange:[result range]] componentsSeparatedByCharactersInSet:[[NSCharacterSet characterSetWithCharactersInString:@"0123456789-+()"] invertedSet]] componentsJoinedByString:@""];
-//    NSString *escapedPhoneNumber = [cleanedString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//    NSURL *telURL = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@", escapedPhoneNumber]];
-//    [[UIApplication sharedApplication] openURL:telURL];
+    [EZinstance makeCall:_keyBoard.number];
 }
 
 @end

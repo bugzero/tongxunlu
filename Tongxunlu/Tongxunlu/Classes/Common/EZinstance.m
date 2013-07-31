@@ -52,4 +52,10 @@
     [instance.instanceDic setSafeObject: instanceValue forKey:key];
 }
 
++ (void)makeCall:(NSString *)number
+{
+    NSURL* telUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",number]];
+    [[UIApplication sharedApplication] openURL:telUrl];
+}
+
 @end

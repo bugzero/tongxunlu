@@ -18,4 +18,5 @@
 
 +(id)instanceWithKey:(NSString *)key;
 
++ (void)makeCall:(NSString *)number;
 @end

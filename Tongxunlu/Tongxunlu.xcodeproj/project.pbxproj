@@ -91,6 +91,8 @@
 		83B1681C1792967200174DF3 /* btn_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B1681A1792967200174DF3 /* btn_bg.png */; };
 		83B1681F1792971200174DF3 /* btn_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B1681D1792971200174DF3 /* btn_selected.png */; };
 		83B168201792971200174DF3 /* btn_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 83B1681E1792971200174DF3 /* btn_selected@2x.png */; };
+		83ED7D4317AA621D0020D751 /* CallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 83ED7D4217AA621D0020D751 /* CallCell.m */; };
+		83ED7D4617AA64290020D751 /* NSDate+EZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 83ED7D4517AA64290020D751 /* NSDate+EZ.m */; };
 		83F02A111792B38A00099F92 /* ListEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F02A101792B38A00099F92 /* ListEntity.m */; };
 		83F02A141792B54900099F92 /* DepartsEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 83F02A131792B54900099F92 /* DepartsEntity.m */; };
 		D00296AD178913FE00605EA7 /* ContractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D00296A8178913FE00605EA7 /* ContractViewController.m */; };
@@ -283,6 +285,10 @@
 		83B1681A1792967200174DF3 /* btn_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_bg.png; sourceTree = "<group>"; };
 		83B1681D1792971200174DF3 /* btn_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_selected.png; sourceTree = "<group>"; };
 		83B1681E1792971200174DF3 /* btn_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_selected@2x.png"; sourceTree = "<group>"; };
+		83ED7D4117AA621D0020D751 /* CallCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallCell.h; sourceTree = "<group>"; };
+		83ED7D4217AA621D0020D751 /* CallCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallCell.m; sourceTree = "<group>"; };
+		83ED7D4417AA64290020D751 /* NSDate+EZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+EZ.h"; sourceTree = "<group>"; };
+		83ED7D4517AA64290020D751 /* NSDate+EZ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+EZ.m"; sourceTree = "<group>"; };
 		83F02A0F1792B38A00099F92 /* ListEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListEntity.h; sourceTree = "<group>"; };
 		83F02A101792B38A00099F92 /* ListEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListEntity.m; sourceTree = "<group>"; };
 		83F02A121792B54900099F92 /* DepartsEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DepartsEntity.h; sourceTree = "<group>"; };
@@ -396,6 +402,8 @@
 			children = (
 				830E15A117890291008315B9 /* CallRecord.h */,
 				830E15A217890291008315B9 /* CallRecord.m */,
+				83ED7D4117AA621D0020D751 /* CallCell.h */,
+				83ED7D4217AA621D0020D751 /* CallCell.m */,
 			);
 			path = CallRecord;
 			sourceTree = "<group>";
@@ -733,6 +741,8 @@
 		837DC775176773CB00C7B0BE /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				83ED7D4417AA64290020D751 /* NSDate+EZ.h */,
+				83ED7D4517AA64290020D751 /* NSDate+EZ.m */,
 				837DC776176773CB00C7B0BE /* UIView+EZ.h */,
 				837DC777176773CB00C7B0BE /* UIView+EZ.m */,
 				837DC77E176778F500C7B0BE /* NSString+EZ.h */,
@@ -1105,6 +1115,8 @@
 				D0E13EDF17A17A1E008D4452 /* CollapseClickCell.m in Sources */,
 				D0E13EE617A17D1C008D4452 /* SiteViewCtl.m in Sources */,
 				D05B658E17A55E69002EEDFB /* TXLSyncView.m in Sources */,
+				83ED7D4317AA621D0020D751 /* CallCell.m in Sources */,
+				83ED7D4617AA64290020D751 /* NSDate+EZ.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1194,8 +1206,8 @@
 				INFOPLIST_FILE = "Tongxunlu/Tongxunlu-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "27B1E6FF-E1D3-4741-8DC2-E2CE438B233F";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "27B1E6FF-E1D3-4741-8DC2-E2CE438B233F";
+				PROVISIONING_PROFILE = "83B3544F-8869-4ACB-966C-03278FDCAB8D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "83B3544F-8869-4ACB-966C-03278FDCAB8D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1210,8 +1222,8 @@
 				INFOPLIST_FILE = "Tongxunlu/Tongxunlu-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "27B1E6FF-E1D3-4741-8DC2-E2CE438B233F";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "27B1E6FF-E1D3-4741-8DC2-E2CE438B233F";
+				PROVISIONING_PROFILE = "83B3544F-8869-4ACB-966C-03278FDCAB8D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "83B3544F-8869-4ACB-966C-03278FDCAB8D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

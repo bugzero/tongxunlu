@@ -17,4 +17,7 @@
 @property(nonatomic,assign)NSInteger userId;
 @property(nonatomic,strong)NSString* userName;
 
+@property(nonatomic,assign)int count;
+@property(nonatomic,assign)int type;
+@property(nonatomic,assign)NSTimeInterval time;
 @end

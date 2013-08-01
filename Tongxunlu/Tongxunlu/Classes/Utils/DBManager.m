@@ -62,7 +62,7 @@
 		}
 	}
     
-    [self test];
+//    [self test];
 	
 	return success;
 }

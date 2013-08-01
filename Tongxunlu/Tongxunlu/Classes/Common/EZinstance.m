@@ -56,10 +56,10 @@
 + (void)makeCall:(NSString *)number
 {
     NSString* name = [DictStoreSupport readPoConfigWithKey:number];
-    NSString* sql = [NSString stringWithFormat:@"INSERT INTO `callrecord`(phone,name) VALUES('%@','%@');",number,isEmptyStr(name)?@"":name];
+    NSString* sql = [NSString stringWithFormat:@"INSERT INTO `callrecord`(phone,name,time) VALUES('%@','%@','%.0lf');",number,isEmptyStr(name)?@"":name,[[NSDate date]timeIntervalSince1970]];
     
     DBManager* db = [EZinstance instanceWithKey:K_DBMANAGER];
-    [db excuteQuery:sql];
+    [db insertSql:sql];
     
     NSURL* telUrl = [NSURL URLWithString:[NSString stringWithFormat:@"tel://%@",number]];
     [[UIApplication sharedApplication] openURL:telUrl];

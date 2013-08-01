@@ -10,6 +10,7 @@
 #import "AccountEntity.h"
 #import "FMDatabase.h"
 #import "DBManager.h"
+#import "CallCell.h"
 
 @interface CallRecord(){
     NSMutableArray*     _recordData;
@@ -40,7 +41,7 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString* identify = @"recordCellIdentify";
     
-    UITableViewCell*    cell = [tableView dequeueReusableCellWithIdentifier:identify];
+    CallCell*    cell = [tableView dequeueReusableCellWithIdentifier:identify];
     
     AccountEntity* account = nil;
     if ([indexPath row] < [_recordData count]) {
@@ -51,14 +52,15 @@
     }
     
     if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle
+        cell = [[CallCell alloc]initWithStyle:account.type
                                      reuseIdentifier:identify];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     if (cell && account) {
-        cell.textLabel.text = account.name;
-        cell.detailTextLabel.text = account.phone;
+        [cell reloadDataWithEntity:account];
+//        cell.textLabel.text = account.name;
+//        cell.detailTextLabel.text = account.phone;
     }
     
     return cell;
@@ -75,12 +77,17 @@
     
     if (account) {
         
-        _callNumber = [[NSString alloc]initWithString:account.phone];
-        
-        NSString* message = [NSString stringWithFormat:@"是否拨打 号码:%@",account.phone];
-        
-        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"拨号" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认",nil];
-        [alert show];
+        if (account.type == RECORD_COUNT) {
+            [self showDetailWithData:account];
+        }
+        else{
+            _callNumber = [[NSString alloc]initWithString:account.phone];
+            
+            NSString* message = [NSString stringWithFormat:@"是否拨打 号码:%@",account.phone];
+            
+            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"拨号" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认",nil];
+            [alert show];
+        }
     }
 }
 
@@ -97,28 +104,72 @@
         _recordData = [[NSMutableArray alloc]initWithCapacity:1];
     }
     
+    [_recordData removeAllObjects];
+    
     DBManager* db = [EZinstance instanceWithKey:K_DBMANAGER];
     
     if (db) {
-        FMResultSet* rs =[db excuteQuery:@"select DISTINCT name, phone  from `callrecord`"];
+        FMResultSet* rs =[db excuteQuery:@"select count(*),phone,name,time from `callrecord` group by phone"];
         while ([rs next]) {
             AccountEntity* entity = [[AccountEntity alloc]init];
             
-            NSString* name = [rs stringForColumn:@"name"];
-            
-            FMResultSet* prs = [db excuteQuery:[NSString stringWithFormat:@"select count(*) from `callrecord` where name='%@'",name]];
-            
-            if ([prs next]) {
-                entity.name = [NSString stringWithFormat:@"%@(%d)",[rs stringForColumn:@"name"],[prs intForColumnIndex:0]];
-            }
-            else
-            {
-                entity.name = [rs stringForColumn:@"name"];
-            }
+            entity.count = [[rs stringForColumnIndex:0]intValue];
+            entity.name = [rs stringForColumn:@"name"];
+            entity.time = [rs doubleForColumn:@"time"];
+            entity.type = RECORD_COUNT;
             
             entity.phone = [rs stringForColumn:@"phone"];
             
             [_recordData addObject:entity];
+        }
+    }
+    
+    [super reloadData];
+}
+
+-(void)showDetailWithData:(AccountEntity*)data{
+    
+    short index = [_recordData indexOfObject:data];
+    
+    BOOL onlyRemove = NO;
+    
+    if (index+1 < _recordData.count) {
+        AccountEntity* next = _recordData[index+1];
+        if ([data.phone isEqualToString:next.phone]) {
+            onlyRemove = YES;
+        }
+    }
+    
+    for (index = _recordData.count -1; index>=0; --index) {
+        AccountEntity* account = _recordData[index];
+        if (account.type == RECORD_DETAIL) {
+            [_recordData removeObjectAtIndex:index];
+        }
+    }
+    
+    if (!onlyRemove) {
+    
+        DBManager* db = [EZinstance instanceWithKey:K_DBMANAGER];
+        
+        if (db && !isEmptyStr(data.phone)) {
+            FMResultSet* rs = [db excuteQuery:[NSString stringWithFormat:@"select * from `callrecord` where phone='%@'",data.phone]];
+            
+            index = [_recordData indexOfObject:data];
+            
+            while ([rs next]) {
+                AccountEntity* entity = [[AccountEntity alloc]init];
+                
+                entity.count = [[rs stringForColumnIndex:0]intValue];
+                entity.name = [rs stringForColumn:@"name"];
+                entity.time = [rs doubleForColumn:@"time"];
+                entity.type = RECORD_DETAIL;
+                
+                entity.phone = [rs stringForColumn:@"phone"];
+
+                
+                [_recordData insertObject:entity atIndex:index+1];
+    //            [_recordData addObject:entity];
+            }
         }
     }
     

@@ -32,6 +32,7 @@
     if (self) {
         self.showNavigationBar = YES;
         self.callViewState = CallViewHide;
+        
     }
     return self;
 }
@@ -51,7 +52,11 @@
     
     [self setTitle:@"最近联系人"];
     
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(hideKeyBoard) name:NOTIFACTION_KEYBOARD_ADDPERSON_COMPLATE object:nil];
+    
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(callObserver:) name:NOTIFACTION_TAKE_CALL object:nil];
+    
 }
 
 -(void)dealloc{

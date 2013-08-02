@@ -45,6 +45,7 @@
 #define kColorDrowpDownLastRowText [UIColor colorWithRed:24.0f/255.0f green:158.0f/255.0f blue:131.0f/255.0f alpha:1.0f]
 
 #define NOTIFACTION_TAKE_CALL       @"TAKECALL"
+#define NOTIFACTION_KEYBOARD_ADDPERSON_COMPLATE       @"keyboard_addpersoncmpl"
 
 ///view tagg
 #define TAG_TITLELB     -(1<<2)

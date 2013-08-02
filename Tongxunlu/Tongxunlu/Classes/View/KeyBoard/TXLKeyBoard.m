@@ -8,7 +8,6 @@
 
 #import "TXLKeyBoard.h"
 #import "UIButton+EZ.h"
-
 #import <AudioToolbox/AudioToolbox.h>
 
 @interface TXLKeyBoard(){
@@ -146,10 +145,46 @@
             _editPanel.text = [_editPanel.text substringToIndex:[_editPanel.text length]-1];
         }
     }
+    // 短信
+    else if(key.tag == -88){
+        [EZinstance sendMessage:nil];
+    }
+    // 联系人
+    else if (key.tag == -95){
+        if (isEmptyStr(_editPanel.text)) {
+            [self showNotice:@"没有输入号码"];
+        }
+        else{
+            
+            ABNewPersonViewController *newPersonViewController = [[ABNewPersonViewController alloc] init];
+
+            ABRecordRef newPerson = ABPersonCreate();
+            ABMutableMultiValueRef multiValue = ABMultiValueCreateMutable(kABMultiDictionaryPropertyType);
+            
+            CFErrorRef error = NULL;
+            multiValue = ABMultiValueCreateMutable(kABMultiStringPropertyType);
+            ABMultiValueAddValueAndLabel(multiValue, (__bridge CFTypeRef)(_editPanel.text), kABPersonPhoneMainLabel, NULL);
+            ABRecordSetValue(newPerson, kABPersonPhoneProperty, multiValue , &error);
+            
+            NSAssert(!error, @"Something bad happened here.");
+            
+            newPersonViewController.displayedPerson = newPerson;
+            // Set delegate
+            newPersonViewController.newPersonViewDelegate = self;
+            UINavigationController *navigation = [[UINavigationController alloc] initWithRootViewController:newPersonViewController];
+            [[EZinstance instanceWithKey:K_NAVIGATIONCTL] presentModalViewController:navigation animated:YES];
+        }
+    }
     else{
         AudioServicesPlaySystemSound(shortSound);
         _editPanel.text = [NSString stringWithFormat:@"%@%d",_editPanel.text,-(key.tag+48)];
     }
+}
+
+- (void)newPersonViewController:(ABNewPersonViewController *)newPersonViewController didCompleteWithNewPerson:(ABRecordRef)person
+{
+	[[EZinstance instanceWithKey:K_NAVIGATIONCTL]  dismissModalViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFACTION_KEYBOARD_ADDPERSON_COMPLATE object:nil];
 }
 
 #pragma -mark uitexstfield delegate

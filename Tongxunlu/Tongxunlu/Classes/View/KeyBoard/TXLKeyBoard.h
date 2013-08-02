@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AddressBookUI/AddressBookUI.h>
 
-@interface TXLKeyBoard : UIView<UITextFieldDelegate>{
+@interface TXLKeyBoard : UIView<UITextFieldDelegate,ABNewPersonViewControllerDelegate>{
     NSMutableArray*     _keyButtons;
     UITextField*        _editPanel;
 }

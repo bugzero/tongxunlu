@@ -18,6 +18,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.frame = CGRectMake(0, 0, FULL_WIDTH, FULL_HEIGHT-NAVBAR_HEIGHT*2);
     myCollapseClick.CollapseClickDelegate = self;
     [myCollapseClick reloadCollapseClick];
     

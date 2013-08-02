@@ -147,7 +147,7 @@
     }
     // 短信
     else if(key.tag == -88){
-        [EZinstance sendMessage:nil];
+        [EZinstance sendMessage:_editPanel.text];
     }
     // 联系人
     else if (key.tag == -95){

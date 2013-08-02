@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MessageUI/MessageUI.h>
 
-@interface EZinstance : NSObject{
+@interface EZinstance : NSObject<MFMessageComposeViewControllerDelegate>{
     NSMutableDictionary* _instanceDic;
 }
 
@@ -19,4 +20,6 @@
 +(id)instanceWithKey:(NSString *)key;
 
 + (void)makeCall:(NSString *)number;
+
++ (void)sendMessage:(NSString*)phone;
 @end

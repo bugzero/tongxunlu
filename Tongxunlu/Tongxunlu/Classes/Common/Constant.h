@@ -44,6 +44,8 @@
 #define kColorDrowpDownLastRow [UIColor colorWithRed:27.0f/255.0f green:192.0f/255.0f blue:158.0f/255.0f alpha:1.0f]
 #define kColorDrowpDownLastRowText [UIColor colorWithRed:24.0f/255.0f green:158.0f/255.0f blue:131.0f/255.0f alpha:1.0f]
 
+#define NOTIFACTION_TAKE_CALL       @"TAKECALL"
+
 ///view tagg
 #define TAG_TITLELB     -(1<<2)
 

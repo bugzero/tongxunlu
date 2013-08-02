@@ -50,6 +50,16 @@
     [self performSelector:@selector(loadContent) withObject:nil afterDelay:0.2];
     
     [self setTitle:@"最近联系人"];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(callObserver:) name:NOTIFACTION_TAKE_CALL object:nil];
+}
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+-(void)callObserver:(id)sender{
+    [_callRecord reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -157,8 +167,7 @@
         [alert show];
     }
     [EZinstance makeCall:_keyBoard.number];
-    
-    [_callRecord reloadData];
+//    [_callRecord reloadData];
 }
 
 @end

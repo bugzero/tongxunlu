@@ -30,7 +30,7 @@ static char* noticeViewKey = "NoticeViewKey";
 //    UIView* view = [UIApplication sharedApplication].keyWindow;
     UIView * view = ((EZNavigationController*)[EZinstance instanceWithKey:K_NAVIGATIONCTL]).view;
     
-	self.noticeView = [[MBProgressHUD alloc] initWithView:view.window];
+	self.noticeView = [[MBProgressHUD alloc] initWithView:view];
 	[view addSubview:self.noticeView];
 	
     self.noticeView.customView = [[UIImageView alloc] initWithImage:nil];

@@ -120,6 +120,7 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
+
 - (IBAction)sendMessage:(id)sender {
     Class messageClass = (NSClassFromString(@"MFMessageComposeViewController"));
     if (messageClass != nil) {

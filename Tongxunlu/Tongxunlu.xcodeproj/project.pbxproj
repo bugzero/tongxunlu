@@ -17,6 +17,11 @@
 		830E15B817890B1A008315B9 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 830E15B717890B19008315B9 /* libsqlite3.0.dylib */; };
 		830E15BB17890B92008315B9 /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 830E15BA17890B92008315B9 /* DBManager.m */; };
 		830E15BD17892157008315B9 /* txl.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 830E15BC17892157008315B9 /* txl.sqlite */; };
+		8347DFE617AB5BDB00E8A582 /* CallDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8347DFE517AB5BDB00E8A582 /* CallDetailCell.m */; };
+		8347DFE917AB604D00E8A582 /* default_contract.png in Resources */ = {isa = PBXBuildFile; fileRef = 8347DFE717AB604D00E8A582 /* default_contract.png */; };
+		8347DFEA17AB604D00E8A582 /* default_contract@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8347DFE817AB604D00E8A582 /* default_contract@2x.png */; };
+		8347DFED17AB65E600E8A582 /* call.png in Resources */ = {isa = PBXBuildFile; fileRef = 8347DFEB17AB65E600E8A582 /* call.png */; };
+		8347DFEE17AB65E600E8A582 /* call@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8347DFEC17AB65E600E8A582 /* call@2x.png */; };
 		837DC6971767161900C7B0BE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837DC6961767161900C7B0BE /* UIKit.framework */; };
 		837DC6991767161900C7B0BE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837DC6981767161900C7B0BE /* Foundation.framework */; };
 		837DC69B1767161900C7B0BE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 837DC69A1767161900C7B0BE /* CoreGraphics.framework */; };
@@ -167,6 +172,12 @@
 		830E15B917890B92008315B9 /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
 		830E15BA17890B92008315B9 /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
 		830E15BC17892157008315B9 /* txl.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = txl.sqlite; sourceTree = "<group>"; };
+		8347DFE417AB5BDB00E8A582 /* CallDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallDetailCell.h; sourceTree = "<group>"; };
+		8347DFE517AB5BDB00E8A582 /* CallDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallDetailCell.m; sourceTree = "<group>"; };
+		8347DFE717AB604D00E8A582 /* default_contract.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_contract.png; sourceTree = "<group>"; };
+		8347DFE817AB604D00E8A582 /* default_contract@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "default_contract@2x.png"; sourceTree = "<group>"; };
+		8347DFEB17AB65E600E8A582 /* call.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = call.png; sourceTree = "<group>"; };
+		8347DFEC17AB65E600E8A582 /* call@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call@2x.png"; sourceTree = "<group>"; };
 		837DC6931767161900C7B0BE /* Tongxunlu.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tongxunlu.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		837DC6961767161900C7B0BE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		837DC6981767161900C7B0BE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -404,6 +415,8 @@
 				830E15A217890291008315B9 /* CallRecord.m */,
 				83ED7D4117AA621D0020D751 /* CallCell.h */,
 				83ED7D4217AA621D0020D751 /* CallCell.m */,
+				8347DFE417AB5BDB00E8A582 /* CallDetailCell.h */,
+				8347DFE517AB5BDB00E8A582 /* CallDetailCell.m */,
 			);
 			path = CallRecord;
 			sourceTree = "<group>";
@@ -495,6 +508,10 @@
 		837DC6FA176767E900C7B0BE /* resources */ = {
 			isa = PBXGroup;
 			children = (
+				8347DFEB17AB65E600E8A582 /* call.png */,
+				8347DFEC17AB65E600E8A582 /* call@2x.png */,
+				8347DFE717AB604D00E8A582 /* default_contract.png */,
+				8347DFE817AB604D00E8A582 /* default_contract@2x.png */,
 				D0831B87179FEAE70011963C /* icon_card_nor1@2x.png */,
 				D0831B83179F6F210011963C /* sms@2x.png */,
 				D0831B84179F6F210011963C /* phone@2x.png */,
@@ -1028,6 +1045,10 @@
 				D0831B88179FEAE70011963C /* icon_card_nor1@2x.png in Resources */,
 				D0E13EE017A17A1E008D4452 /* CollapseClickCell.xib in Resources */,
 				D0E13EE717A17D1C008D4452 /* SiteViewCtl.xib in Resources */,
+				8347DFE917AB604D00E8A582 /* default_contract.png in Resources */,
+				8347DFEA17AB604D00E8A582 /* default_contract@2x.png in Resources */,
+				8347DFED17AB65E600E8A582 /* call.png in Resources */,
+				8347DFEE17AB65E600E8A582 /* call@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1117,6 +1138,7 @@
 				D05B658E17A55E69002EEDFB /* TXLSyncView.m in Sources */,
 				83ED7D4317AA621D0020D751 /* CallCell.m in Sources */,
 				83ED7D4617AA64290020D751 /* NSDate+EZ.m in Sources */,
+				8347DFE617AB5BDB00E8A582 /* CallDetailCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

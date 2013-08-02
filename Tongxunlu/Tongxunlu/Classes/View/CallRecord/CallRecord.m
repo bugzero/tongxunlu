@@ -10,7 +10,7 @@
 #import "AccountEntity.h"
 #import "FMDatabase.h"
 #import "DBManager.h"
-#import "CallCell.h"
+#import "CallDetailCell.h"
 
 @interface CallRecord(){
     NSMutableArray*     _recordData;
@@ -28,6 +28,7 @@
         self.delegate = self;
         self.dataSource = self;
         self.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.backgroundColor = RGB(238, 238, 238);
     }
     return self;
 }
@@ -39,9 +40,7 @@
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString* identify = @"recordCellIdentify";
-    
-    CallCell*    cell = [tableView dequeueReusableCellWithIdentifier:identify];
+//    static NSString* identify = @"recordCellIdentify";
     
     AccountEntity* account = nil;
     if ([indexPath row] < [_recordData count]) {
@@ -51,16 +50,23 @@
         }
     }
     
+    CallCell*    cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat:@"recordCellIdentify%d",account.type]];
+    
     if (!cell) {
-        cell = [[CallCell alloc]initWithStyle:account.type
-                                     reuseIdentifier:identify];
+        
+        if (account.type == RECORD_DETAIL)
+        {
+            cell = [[CallDetailCell alloc]initWithReuseIdentifier:[NSString stringWithFormat:@"recordCellIdentify%d",account.type]];
+        }
+        else
+        {
+            cell = [[CallCell alloc]initWithReuseIdentifier:[NSString stringWithFormat:@"recordCellIdentify%d",account.type]];
+        }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     if (cell && account) {
-        [cell reloadDataWithEntity:account];
-//        cell.textLabel.text = account.name;
-//        cell.detailTextLabel.text = account.phone;
+        [cell reloadDataWithEntity:account bEnd:(indexPath.row == _recordData.count-1)];
     }
     
     return cell;
@@ -78,17 +84,13 @@
     if (account) {
         
         if (account.type == RECORD_COUNT) {
-            [self showDetailWithData:account];
-        }
-        else{
-            _callNumber = [[NSString alloc]initWithString:account.phone];
-            
-            NSString* message = [NSString stringWithFormat:@"是否拨打 号码:%@",account.phone];
-            
-            UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"拨号" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确认",nil];
-            [alert show];
+            [self showDetailWithData:account atIndex:indexPath];
         }
     }
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 40;
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
@@ -97,6 +99,21 @@
     }
     _callNumber = @"";
 }
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    AccountEntity* account = nil;
+    if ([indexPath row] < [_recordData count]) {
+        account = _recordData[[indexPath row]];
+        if (![account isKindOfClass:[AccountEntity class]]) {
+            account = nil;
+        }
+    }
+    
+    return account.type == RECORD_COUNT;
+}
+
+#pragma -mark
+#pragma -mark delete
 
 -(void)reloadData{
     
@@ -127,52 +144,33 @@
     [super reloadData];
 }
 
--(void)showDetailWithData:(AccountEntity*)data{
+-(void)showDetailWithData:(AccountEntity*)data atIndex:(NSIndexPath*)indexPath{
     
-    short index = [_recordData indexOfObject:data];
+    BOOL needClose = NO;
     
-    BOOL onlyRemove = NO;
-    
-    if (index+1 < _recordData.count) {
-        AccountEntity* next = _recordData[index+1];
-        if ([data.phone isEqualToString:next.phone]) {
-            onlyRemove = YES;
-        }
+    if (!indexPath) {
+        return;
     }
     
-    for (index = _recordData.count -1; index>=0; --index) {
-        AccountEntity* account = _recordData[index];
-        if (account.type == RECORD_DETAIL) {
-            [_recordData removeObjectAtIndex:index];
-        }
+    NSIndexPath* path = [NSIndexPath indexPathForRow:indexPath.row+1 inSection:indexPath.section];
+    
+    if (indexPath.row+1 < _recordData.count) {
+        AccountEntity* next = _recordData[indexPath.row+1];
+        needClose = (RECORD_DETAIL == next.type);
     }
     
-    if (!onlyRemove) {
-    
-        DBManager* db = [EZinstance instanceWithKey:K_DBMANAGER];
+    if (needClose) {
+        [_recordData removeObjectAtIndex:indexPath.row+1];
+        [self deleteRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    else{
+        AccountEntity* account = [[AccountEntity alloc]init];
+        account.phone = data.phone;
+        account.type = RECORD_DETAIL;
         
-        if (db && !isEmptyStr(data.phone)) {
-            FMResultSet* rs = [db excuteQuery:[NSString stringWithFormat:@"select * from `callrecord` where phone='%@'",data.phone]];
-            
-            index = [_recordData indexOfObject:data];
-            
-            while ([rs next]) {
-                AccountEntity* entity = [[AccountEntity alloc]init];
-                
-                entity.count = [[rs stringForColumnIndex:0]intValue];
-                entity.name = [rs stringForColumn:@"name"];
-                entity.time = [rs doubleForColumn:@"time"];
-                entity.type = RECORD_DETAIL;
-                
-                entity.phone = [rs stringForColumn:@"phone"];
-
-                
-                [_recordData insertObject:entity atIndex:index+1];
-    //            [_recordData addObject:entity];
-            }
-        }
+        [_recordData insertObject:account atIndex:indexPath.row+1];
+        
+        [self insertRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
-    
-    [super reloadData];
 }
 @end

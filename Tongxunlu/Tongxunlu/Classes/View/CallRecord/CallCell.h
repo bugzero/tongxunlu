@@ -16,6 +16,10 @@ typedef enum {
 
 @interface CallCell : UITableViewCell
 @property(nonatomic,assign)RecordType type;
+@property(nonatomic,strong)AccountEntity* entity;
 
--(void)reloadDataWithEntity:(AccountEntity*)entity;
+-(void)reloadDataWithEntity:(AccountEntity*)entity bEnd:(BOOL)bEnd;
+
+
+-(id)initWithReuseIdentifier:(NSString *)reuseIdentifier;
 @end

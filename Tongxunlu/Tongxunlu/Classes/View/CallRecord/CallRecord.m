@@ -152,25 +152,41 @@
         return;
     }
     
-    NSIndexPath* path = [NSIndexPath indexPathForRow:indexPath.row+1 inSection:indexPath.section];
     
     if (indexPath.row+1 < _recordData.count) {
         AccountEntity* next = _recordData[indexPath.row+1];
         needClose = (RECORD_DETAIL == next.type);
     }
     
-    if (needClose) {
-        [_recordData removeObjectAtIndex:indexPath.row+1];
-        [self deleteRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationAutomatic];
+    // 关闭已经打开的
+    NSMutableArray* delIndexs = [[NSMutableArray alloc]initWithCapacity:1];
+    for (short index = _recordData.count-1 ; index >= 0; --index) {
+        AccountEntity* acc = _recordData[index];
+        if (acc.type == RECORD_DETAIL) {
+            NSIndexPath* delPath = [NSIndexPath indexPathForRow:index inSection:indexPath.section];
+            
+            [delIndexs addObject:delPath];
+            
+            [_recordData removeObject:acc];
+        }
     }
-    else{
+    
+    if (delIndexs.count > 0 ) {
+        [self deleteRowsAtIndexPaths:delIndexs withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+    
+    
+    // 添加新的
+    if (!needClose) {
         AccountEntity* account = [[AccountEntity alloc]init];
         account.phone = data.phone;
         account.type = RECORD_DETAIL;
         
-        [_recordData insertObject:account atIndex:indexPath.row+1];
+        [_recordData insertObject:account atIndex:[_recordData indexOfObject:data]+1];
         
+        NSIndexPath* path = [NSIndexPath indexPathForRow:[_recordData indexOfObject:data]+1 inSection:indexPath.section];
         [self insertRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
+    
 }
 @end

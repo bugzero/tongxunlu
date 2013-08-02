@@ -51,7 +51,12 @@
 
 -(void)loadSplash{
     if (!self._splashView) {
-        self._splashView = [[UIImageView alloc]initWithFrame:FULL_VIEW_FRAME];
+        self._splashView = [[UIImageView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+        
+        if (![UIApplication sharedApplication].isStatusBarHidden) {
+            self._splashView.top = -[UIApplication sharedApplication].statusBarFrame.size.height;
+        }
+
         if (IS_IPHONE5) {
             self._splashView.image = [UIImage imageNamed:@"Default-568h@2x"];
         }

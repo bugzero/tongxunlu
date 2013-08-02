@@ -9,6 +9,7 @@
 #import "CallDetailCell.h"
 #import <QuartzCore/QuartzCore.h>
 #import "DBManager.h"
+#import "CallDetailView.h"
 
 @interface CallDetailCell(){
     UIView*     _bottomShardow;
@@ -111,7 +112,9 @@
      *	显示详情
      */
     if (recordList.count > 0) {
+        CallDetailView* view = [[CallDetailView alloc]initWithData:recordList];
         
+        [view show];
     }
     else{
         [self showNotice:@"没有记录"];

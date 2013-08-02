@@ -83,6 +83,7 @@
 		8389BD341769B221005D6E66 /* btn_confirm@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8389BD331769B221005D6E66 /* btn_confirm@2x.png */; };
 		8389BD361769B22A005D6E66 /* btn_confirm_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8389BD351769B22A005D6E66 /* btn_confirm_selected@2x.png */; };
 		8389BD381769B234005D6E66 /* btn_cancel_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 8389BD371769B234005D6E66 /* btn_cancel_selected.png */; };
+		83952DAC17AB83AB00B834CD /* CallDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 83952DAB17AB83AB00B834CD /* CallDetailView.m */; };
 		83AE0B5C1768363700031A79 /* TXLEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AE0B5B1768363700031A79 /* TXLEntity.m */; };
 		83AE0B5F1768374E00031A79 /* UIImage+EZ.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AE0B5E1768374E00031A79 /* UIImage+EZ.m */; };
 		83AE0B611768384600031A79 /* theme in Resources */ = {isa = PBXBuildFile; fileRef = 83AE0B601768384600031A79 /* theme */; };
@@ -277,6 +278,8 @@
 		8389BD331769B221005D6E66 /* btn_confirm@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_confirm@2x.png"; sourceTree = "<group>"; };
 		8389BD351769B22A005D6E66 /* btn_confirm_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "btn_confirm_selected@2x.png"; sourceTree = "<group>"; };
 		8389BD371769B234005D6E66 /* btn_cancel_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btn_cancel_selected.png; sourceTree = "<group>"; };
+		83952DAA17AB83AB00B834CD /* CallDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CallDetailView.h; sourceTree = "<group>"; };
+		83952DAB17AB83AB00B834CD /* CallDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CallDetailView.m; sourceTree = "<group>"; };
 		83AE0B5A1768363700031A79 /* TXLEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TXLEntity.h; sourceTree = "<group>"; };
 		83AE0B5B1768363700031A79 /* TXLEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TXLEntity.m; sourceTree = "<group>"; };
 		83AE0B5D1768374E00031A79 /* UIImage+EZ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+EZ.h"; sourceTree = "<group>"; };
@@ -417,6 +420,8 @@
 				83ED7D4217AA621D0020D751 /* CallCell.m */,
 				8347DFE417AB5BDB00E8A582 /* CallDetailCell.h */,
 				8347DFE517AB5BDB00E8A582 /* CallDetailCell.m */,
+				83952DAA17AB83AB00B834CD /* CallDetailView.h */,
+				83952DAB17AB83AB00B834CD /* CallDetailView.m */,
 			);
 			path = CallRecord;
 			sourceTree = "<group>";
@@ -1139,6 +1144,7 @@
 				83ED7D4317AA621D0020D751 /* CallCell.m in Sources */,
 				83ED7D4617AA64290020D751 /* NSDate+EZ.m in Sources */,
 				8347DFE617AB5BDB00E8A582 /* CallDetailCell.m in Sources */,
+				83952DAC17AB83AB00B834CD /* CallDetailView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

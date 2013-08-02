@@ -9,6 +9,8 @@
 #ifndef Tongxunlu_Constant_h
 #define Tongxunlu_Constant_h
 
+//#define SHOW_PRE_RELEASE      /// 预览功能开关
+
 /// layout
 #define SCREEN_HEIGHT               [[UIScreen mainScreen] bounds].size.height
 #define STATUSBAR_HEIGHT            [[UIApplication sharedApplication] statusBarFrame].size.height

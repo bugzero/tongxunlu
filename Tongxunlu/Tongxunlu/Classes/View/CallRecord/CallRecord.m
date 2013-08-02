@@ -61,6 +61,7 @@
         else
         {
             cell = [[CallCell alloc]initWithReuseIdentifier:[NSString stringWithFormat:@"recordCellIdentify%d",account.type]];
+            cell.delegate = self;
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
@@ -100,17 +101,65 @@
     _callNumber = @"";
 }
 
--(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+
+-(void)delcell:(CallCell*)cell{
+    if (!cell) {
+        return;
+    }
+    NSIndexPath* path = [self indexPathForCell:cell];
+    
+    if (!path) {
+        return;
+    }
+    
+    // 数据库操作
     AccountEntity* account = nil;
-    if ([indexPath row] < [_recordData count]) {
-        account = _recordData[[indexPath row]];
+    if ([path row] < [_recordData count]) {
+        account = _recordData[[path row]];
         if (![account isKindOfClass:[AccountEntity class]]) {
             account = nil;
         }
     }
     
-    return account.type == RECORD_COUNT;
+    DBManager* db = [EZinstance instanceWithKey:K_DBMANAGER];
+    
+    [db insertSql:[NSString stringWithFormat: @"delete from `callrecord` where phone='%@'",account.phone]];
+    
+    
+    [_recordData removeObject:account];
+    
+    [self deleteRowsAtIndexPaths:[NSArray arrayWithObject:path] withRowAnimation:UITableViewRowAnimationAutomatic];
+    
+    
 }
+//-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+//    AccountEntity* account = nil;
+//    if ([indexPath row] < [_recordData count]) {
+//        account = _recordData[[indexPath row]];
+//        if (![account isKindOfClass:[AccountEntity class]]) {
+//            account = nil;
+//        }
+//    }
+//    
+//    return account.type == RECORD_COUNT;
+//}
+//
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+//    
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        [_recordData removeObjectAtIndex:indexPath.row];
+//        // Delete the row from the data source.
+//        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+//        
+//    }
+//    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+//    }
+//}
+//
+//- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return @"删除记录";
+//}
 
 #pragma -mark
 #pragma -mark delete
@@ -151,7 +200,6 @@
     if (!indexPath) {
         return;
     }
-    
     
     if (indexPath.row+1 < _recordData.count) {
         AccountEntity* next = _recordData[indexPath.row+1];

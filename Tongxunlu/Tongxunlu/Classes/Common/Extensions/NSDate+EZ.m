@@ -36,28 +36,28 @@
 		timeStr = @"刚刚";
 	}else if (nowMonth == thatMonth && nowYear == thatYear){
 		if (nowDay == thatDay) {
-			if (dis < 3600) {
-				if (dis/60 == 0) {
-					timeStr = @"刚刚";
-				} else {
-					timeStr = [NSString stringWithFormat:@"%d分钟前",dis/60];
-				}
-			} else {
-				[outputFormatter setDateFormat: @"今天 H:mm"];
+//			if (dis < 120) {
+//				if (dis/60 == 0) {
+//					timeStr = @"刚刚";
+//				} else {
+//					timeStr = [NSString stringWithFormat:@"%d分钟前",dis/60];
+//				}
+//			} else {
+				[outputFormatter setDateFormat: @"今天 H:mm:ss"];
 				timeStr = [outputFormatter stringFromDate:that];
-			}
+//			}
 		} else if(nowDay == thatDay + 1){
-			[outputFormatter setDateFormat: @"昨天 H:mm"];
+			[outputFormatter setDateFormat: @"昨天 H:mm:ss"];
 			timeStr = [outputFormatter stringFromDate:that];
 		} else if(nowDay == thatDay + 2){
-			[outputFormatter setDateFormat: @"前天 H:mm"];
+			[outputFormatter setDateFormat: @"前天 H:mm:ss"];
 			timeStr = [outputFormatter stringFromDate:that];
 		} else {
-			[outputFormatter setDateFormat: @"M月d日 H:mm"];
+			[outputFormatter setDateFormat: @"M月d日 H:mm:ss"];
 			timeStr = [outputFormatter stringFromDate:that];
 		}
 	}else if (nowYear == thatYear && nowMonth != thatMonth){
-		[outputFormatter setDateFormat: @"M月d日 H:mm"];
+		[outputFormatter setDateFormat: @"M月d日 H:mm:ss"];
 		timeStr = [outputFormatter stringFromDate:that];
 	}else{
 		[outputFormatter setDateFormat: @"yyyy年 M月d日"];

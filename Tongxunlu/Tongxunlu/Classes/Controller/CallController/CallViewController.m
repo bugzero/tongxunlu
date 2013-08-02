@@ -116,9 +116,9 @@
         UIButton* callbutton = [UIButton buttonWithTitle:nil image:[UIImage themeImageNamed:@"DialCallNormalBg"]  highlightedImage:[UIImage themeImageNamed:@"DialCallPressBg"] target:self action:@selector(sysCall)];
         callbutton.frame = CGRectMake(0, 0, 240, 49);
         [_callView addSubview:callbutton];
-        
-        [navi.view addSubview:_callView];
     }
+    
+    [navi.view addSubview:_callView];
     
     [UIView animateWithDuration:EZ_ANIMATION_DURATION animations:^{
         _keyBoard.bottom = self.view.height;
@@ -171,7 +171,10 @@
         UIAlertView *alert = [[UIAlertView alloc]initWithTitle:nil message:@"号码为空" delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
         [alert show];
     }
-    [EZinstance makeCall:_keyBoard.number];
+    else{
+        [EZinstance makeCall:_keyBoard.number];        
+    }
+
 //    [_callRecord reloadData];
 }
 

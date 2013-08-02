@@ -81,6 +81,7 @@
 
 -(void)takeRecord{
     if (isEmptyStr(self.entity.phone)) {
+        [self showNotice:@"号码为空"];
         return;
     }
     

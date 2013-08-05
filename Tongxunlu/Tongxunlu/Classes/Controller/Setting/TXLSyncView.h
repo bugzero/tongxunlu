@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DBManager.h"
 
 @interface TXLSyncView : UIView<UITableViewDataSource,UITableViewDelegate>
-
+{
+    DBManager* _db;
+}
 @property(nonatomic,strong)IBOutlet UITableView  *myTableView;
 @end

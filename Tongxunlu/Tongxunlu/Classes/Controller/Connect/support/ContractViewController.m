@@ -117,9 +117,11 @@
     self.view.frame = CONTENT_VIEW_FRAME;
     self.view.top = 0;
     
-    UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 20, 320, 44)];
+    UISearchBar *searchBar = [[UISearchBar alloc]initWithFrame:CGRectMake(0, 0, 320, 44)];
 //    _searchBar.delegate = self;
     searchBar.placeholder = @"输入字母、汉字或电话号码搜索";
+//    searchBar.delegate  = self;
+//    [self.view addSubview:searchBar];
     
     _searchdispalyCtrl = [[UISearchDisplayController  alloc] initWithSearchBar:searchBar contentsController:self];
     
@@ -132,12 +134,17 @@
     _searchdispalyCtrl.searchResultsDataSource = self;
     
     [self.view addSubview:_searchdispalyCtrl.searchBar];
-//     [self setMySearchDisplayController:searchdispalyCtrl];
-    
+//    [self setMySearchDisplayController:_searchdispalyCtrl];
     
     self.title = @"联系人";
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
+    _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 45, 320, 440) style:UITableViewStylePlain];
+    _tableView.dataSource = self;
+    _tableView.delegate = self;
+    
+    //[_tableView setScrollsToTop:NO];
+
+    [self.view addSubview:_tableView];
+
     
     [self loadContacts];
 }
@@ -147,7 +154,7 @@
     [super viewWillAppear:animated];
     if (![self.searchDisplayController isActive]) {
         [self loadContacts];
-        [self.tableView reloadData];
+        [_tableView reloadData];
     }
     [self.searchDisplayController.searchResultsTableView reloadData];
 }
@@ -188,7 +195,7 @@
 #pragma mark - Table View
 -(NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
 {
-    if ([tableView isEqual:self.tableView]) {
+    if ([tableView isEqual:_tableView]) {
         NSMutableArray *indices = [NSMutableArray arrayWithObject:UITableViewIndexSearch];
         for (int i = 0; i < 27; i++)
             [indices addObject:[[ALPHA substringFromIndex:i] substringToIndex:1]];
@@ -201,7 +208,7 @@
 {
     if (title == UITableViewIndexSearch)
 	{
-		[self.tableView scrollRectToVisible:self.searchDisplayController.searchBar.frame animated:NO];
+		[_tableView scrollRectToVisible:self.searchDisplayController.searchBar.frame animated:NO];
 		return -1;
 	}
     
@@ -209,7 +216,7 @@
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if ([tableView isEqual:self.tableView]) {
+    if ([tableView isEqual:_tableView]) {
         return 27;
     }
     return 1;
@@ -217,7 +224,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if ([tableView isEqual:self.tableView]) {
+    if ([tableView isEqual:_tableView]) {
         NSString *key=[NSString stringWithFormat:@"%c",[ALPHA characterAtIndex:section]];
         return  [[sectionDic objectForKey:key] count];
     }
@@ -240,7 +247,7 @@
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (![tableView isEqual:self.tableView]) {
+    if (![tableView isEqual:_tableView]) {
         //搜索结果
         if (cell == nil) {
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
@@ -271,7 +278,7 @@
 {
     //UITableViewCell *cell=[tableView cellForRowAtIndexPath:indexPath];
     ABRecordRef person;
-    if (![tableView isEqual:self.tableView]) {
+    if (![tableView isEqual:_tableView]) {
         NSMutableDictionary *record=[filteredArray objectAtIndex:indexPath.row];
         NSString *recordID=[record objectForKey:@"ID"];
         person=(__bridge ABRecordRef)([contactDic objectForKey:recordID]);

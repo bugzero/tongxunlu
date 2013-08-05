@@ -17,6 +17,7 @@
 
 #import "ListEntity.h"
 #import "DepartsEntity.h"
+#import "DBManager.h"
 
 
 @interface CompanySearchViewController ()
@@ -26,6 +27,7 @@
     DeptChoiceViewController *_deptViewCtl;
     FPPopoverController *_popover;
     NSString            *_deptId;
+    NSArray             *_departs;
 }
 //@property (nonatomic, strong) FAFancyMenuView *menu;
 @end
@@ -39,6 +41,16 @@
         // Custom initialization
     }
     return self;
+}
+
+- (void)viewDidUnload
+{
+    _datas = nil;
+    _deptDatas = nil;
+    _deptViewCtl = nil;
+    _popover = nil;
+    _departs = nil;
+    _deptId = nil;
 }
 
 - (void)deepArray:(NSArray*)topArray  noBingos:(NSMutableArray*)noBingos level:(int)level
@@ -91,18 +103,12 @@
     
     
     NSDictionary *plistDict = [NSDictionary dictionaryWithObject:_deptDatas forKey:@"Objects" ];
-    
-//    NSString   *path = [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES) objectAtIndex:0] stringByAppendingPathComponent:@"datas.plist"];
 
     NSArray *paths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask,YES);
     NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:@"State.data"];
     
          // 序列化并保存到文件中
     [NSKeyedArchiver archiveRootObject:plistDict toFile:filePath];
-    
-//    if (plistDict) {
-//        [plistDict writeToFile:path atomically:YES];
-//    }
 
 
 }
@@ -111,34 +117,42 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    NSArray *departs = [DictStoreSupport readRtConfigWithKey:COMP_DEPT_CACHE_DATAS];
-    if (!departs) {
-        //请求部门数据
-        [[EZRequest instance]postDataWithPath:@"/txlmain-manage/mobile/department/mobileSearch.txl" params:@{} success:^(NSDictionary *result) {
-            
-            //// for test
-            //        ListEntity* list = [[ListEntity alloc]initWithDictionary:result listClass:[DepartsEntity class] lisKey:@"departs"];
-            
-            //        DBG(@"%@",list);
-            //        for (id val in list.list) {
-            //            DBG(@"%@",val);
-            //        }
-            //        DBG(@"%@",list.list);
-            
-            /// test end
-            NSArray *departs = [result objectForKey:@"departs"];
-            [self buildDatas:departs];
-            
-        } failure:^(NSError *error) {
-            [self showNotice:@"网络连接异常"];
-            //        DBG(@"%@",error);
-        }];
-    }else{
-        if (syncCompData) {
-            [self buildDatas:departs];
+    
+    if (syncCompData) {
+        DBManager* db = [EZinstance instanceWithKey:K_DBMANAGER];
+        
+        FMResultSet* rs = [db excuteQuery:[NSString stringWithFormat:@"select * from `txl_department`"]];
+        
+        NSMutableArray *departs = [[NSMutableArray alloc]init];
+        
+        while ([rs next]) {
+            NSMutableDictionary* entity = [[NSMutableDictionary alloc]init];
+            [entity setObject:[rs stringForColumn:@"dep_name"] forKey:@"name"];
+            [entity setObject:[rs stringForColumn:@"dep_id"] forKey:@"depId"];
+            [entity setObject:[rs stringForColumn:@"dep_parent_id"] forKey:@"depParentId"];
+            [entity setObject:[rs stringForColumn:@"comp_id"] forKey:@"compId"];
+            [departs addObject:entity];
         }
+        
+        [self buildDatas:departs];
+    }else{
+        //请求部门数据
+        if (_departs==nil) {
+            [[EZRequest instance]postDataWithPath:@"/txlmain-manage/mobile/department/mobileSearch.txl" params:@{} success:^(NSDictionary *result) {
+                
+                _departs = [result objectForKey:@"departs"];
+                [self buildDatas:_departs];
+                
+            } failure:^(NSError *error) {
+                [self showNotice:@"网络连接异常"];
+            }];
+        }
+
     }
     
+    _datas = [[NSMutableArray alloc]init];
+    
+    [self.tableView reloadData];
 }
 
 - (void)viewDidLoad
@@ -158,17 +172,9 @@
     
     _popover = [[FPPopoverController alloc] initWithViewController:_deptViewCtl];
     
-    //[[User instance]loginRequest:@"test" pwd:@"test" isRemember:YES];
-    //先读缓存
-    _datas = [DictStoreSupport readPoConfigWithKey:COMP_USER_CACHE_DATAS];
-    if (!_datas) {
-        _datas = [[NSMutableArray alloc]init];
-    }else{
-        if (syncCompData) {
-            [self.tableView reloadData];
-        }
-    
-    }
+    _datas = [[NSMutableArray alloc]init];
+
+    [self.tableView reloadData];
     // Do any additional setup after loading the view from its nib.
 }
 
@@ -177,10 +183,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-//- (IBAction)showAnimation:(id)sender {
-//    [_popView showAnimation];
-//}
 
 - (IBAction)showAnimation:(id)sender {
     //popover.arrowDirection = FPPopoverArrowDirectionAny;
@@ -228,11 +230,6 @@
     [self presentViewController:picker animated:YES completion:^{
         
     }];
-    
-    //    MFMessageComposeViewController *picker = [[MFMessageComposeViewController alloc] init];
-    //    picker.messageComposeDelegate = self;
-    //
-    //    [self presentModalViewController:picker animated:YES];
 }
 
 - (void)messageComposeViewController:(MFMessageComposeViewController *)controller
@@ -314,20 +311,45 @@
     
     NSString *keyword = [searchBar text];
     
+    if (keyword==nil) {
+        keyword = @"";
+    }
+    
     NSCharacterSet *whitespace = [NSCharacterSet whitespaceAndNewlineCharacterSet];
     
     keyword = [keyword stringByTrimmingCharactersInSet:whitespace];
     
-    
-//    _datas = [DictStoreSupport readRtConfigWithKey:COMP_USER_CACHE_DATAS];
-//    if (_datas && [keyword isEqualToString:@""] && [_deptId isEqualToString:@""]) {
-//        [self.tableView reloadData];
-//        return;
-//    }
-    //NSLog(@"%@",_deptId);
-    
-    NSString *compId = [TXLKeyChainHelper getUserNameWithService:USER_COMP_ID];
-//    if (![keyword isEqualToString:@""]) {
+    if (syncCompData) {//查数据库
+        
+        DBManager* db = [EZinstance instanceWithKey:K_DBMANAGER];
+        
+        FMResultSet* rs = [db excuteQuery:[NSString stringWithFormat:@"select * from `txl_comp_user` WHERE name != '(null)' and name like '%%%@%%' ",keyword]];
+        
+        _datas = [[NSMutableArray alloc]init];
+        
+        while ([rs next]) {
+//            NSLog(@"%@",[rs stringForColumn:@"name"]);
+            NSMutableDictionary* entity = [[NSMutableDictionary alloc]init];
+            [entity setObject:[rs stringForColumn:@"comp_id"] forKey:@"compId"];
+            [entity setObject:[rs stringForColumn:@"comp_tel"] forKey:@"compTel"];
+            [entity setObject:[rs stringForColumn:@"dep_id"] forKey:@"depId"];
+            [entity setObject:[rs stringForColumn:@"name"] forKey:@"name"];
+            [entity setObject:[rs stringForColumn:@"email"] forKey:@"email"];
+            [entity setObject:[rs stringForColumn:@"home_tel"] forKey:@"homeTel"];
+            [entity setObject:[rs stringForColumn:@"msn"] forKey:@"msn"];
+            [entity setObject:[rs stringForColumn:@"position"] forKey:@"position"];
+            [entity setObject:[rs stringForColumn:@"qq"] forKey:@"qq"];
+            [entity setObject:[rs stringForColumn:@"user_id"] forKey:@"userId"];
+            [entity setObject:[rs stringForColumn:@"user_phone"] forKey:@"userPhone"];
+            [entity setObject:[rs stringForColumn:@"virtual_tel"] forKey:@"virtualTel"];
+            
+            [_datas addObject:entity];
+        }
+        
+        [self.tableView reloadData];
+        
+    }else{
+        NSString *compId = [TXLKeyChainHelper getUserNameWithService:USER_COMP_ID];
         [[EZRequest instance]postDataWithPath:@"/txlmain-manage/mobile/user/s/mobileSearch.txl" params:@{@"filter.name": keyword,@"filter.depId":_deptId,@"filter.compId":compId} success:^(NSDictionary *result) {
             _datas = [result objectForKey:@"users"];
             [self.tableView reloadData];
@@ -335,7 +357,7 @@
             [self showNotice:@"网络连接异常"];
             //        DBG(@"%@",error);
         }];
-//    }
+    }
     [searchBar resignFirstResponder];
 }
 
@@ -344,13 +366,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    //NSDictionary *dict = [_datas objectAtIndex:indexPath.row];
-    //_currentId = [dict objectForKey:@"Id"];
     [self.searchBar resignFirstResponder];
     CompanyDetailViewController *detailVc = [[CompanyDetailViewController alloc] initWithNibName:@"CompanyDetailViewController" bundle:nil];
     [detailVc setShowDatas:[_datas objectAtIndex:indexPath.row]];
-//    [self.navigationController pushViewController:detailVc animated:YES];
-//    [self.ezNavigationController pushViewController:detailVc];
     EZNavigationController* navi = [EZinstance instanceWithKey:K_NAVIGATIONCTL];
     if (navi) {
         [navi pushViewController:detailVc];

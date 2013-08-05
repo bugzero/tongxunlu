@@ -23,7 +23,7 @@
     [myCollapseClick reloadCollapseClick];
     
     // If you want a cell open on load, run this method:
-    [myCollapseClick openCollapseClickCellAtIndex:1 animated:NO];
+    [myCollapseClick openCollapseClickCellAtIndex:2 animated:NO];
     /*
      // If you'd like multiple cells open on load, create an NSArray of NSNumbers
      // with each NSNumber corresponding to the index you'd like to open.

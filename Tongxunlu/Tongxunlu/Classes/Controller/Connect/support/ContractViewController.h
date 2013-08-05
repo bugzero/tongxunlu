@@ -8,7 +8,7 @@
 
 @end
 
-@interface ContractViewController : UITableViewController<UITableViewDelegate,UISearchDisplayDelegate,UITableViewDataSource,ABPersonViewControllerDelegate>
+@interface ContractViewController : EZRootViewController<UITableViewDelegate,UISearchDisplayDelegate,UITableViewDataSource,ABPersonViewControllerDelegate>
 {
     NSMutableDictionary *sectionDic;
     NSMutableDictionary *phoneDic;
@@ -18,9 +18,11 @@
 //    UISearchBar    *_searchBar;
     UISearchDisplayController * _searchdispalyCtrl;
     //NSMutableArray *contactNames;
+    UITableView    *_tableView;
 }
 //@property(nonatomic,strong)EZNavigationController  *parentNavCtl;
 @property(nonatomic,strong)id                      delegate;
+//@property(nonatomic,strong)UITableView             *_tableView;
 -(void)loadContacts;
 
 @end
